@@ -1,0 +1,6 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'>
+  <rect width='400' height='300' rx='16' fill='#5D3A1A'/>
+  <rect x='155' y='90' width='90' height='60' rx='6' fill='#3E2510'/><rect x='155' y='105' width='90' height='30' rx='3' fill='#4A2E14'/><circle cx='185' cy='115' r='5' fill='#6B4828'/><circle cx='210' cy='118' r='4' fill='#6B4828'/><circle cx='200' cy='108' r='5' fill='#6B4828'/>
+  <text x='200' y='230' text-anchor='middle' fill='#FFF' font-size='16' font-family='sans-serif'>🧁 Брауни</text>
+  <text x='200' y='252' text-anchor='middle' fill='#FFF' font-size='13' font-family='sans-serif' opacity='0.8'>с орехами</text>
+</svg>

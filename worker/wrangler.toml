@@ -1,0 +1,9 @@
+name = "omnom-notify"
+main = "index.js"
+compatibility_date = "2024-01-01"
+account_id = "9ed31ede11a0b02abe3f1d271fc621db"
+
+# Secrets (BOT_TOKEN, ADMIN_CHAT_ID) — задаются через:
+#   wrangler secret put BOT_TOKEN
+#   wrangler secret put ADMIN_CHAT_ID
+# Они НЕ хранятся в этом файле!

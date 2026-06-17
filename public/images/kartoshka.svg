@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect width="400" height="300" rx="16" fill="#8B4513"/>
+  <circle cx="200" cy="140" r="70" fill="#5C2D0E"/>
+  <circle cx="185" cy="125" r="8" fill="#FFF" opacity="0.15"/>
+  <circle cx="215" cy="145" r="6" fill="#FFF" opacity="0.12"/>
+  <circle cx="195" cy="160" r="5" fill="#FFF" opacity="0.1"/>
+  <text x="200" y="230" text-anchor="middle" fill="#FFF" font-size="16" font-family="sans-serif">🍰 Картошка</text>
+</svg>

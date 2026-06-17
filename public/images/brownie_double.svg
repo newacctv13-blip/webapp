@@ -1,0 +1,6 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'>
+  <rect width='400' height='300' rx='16' fill='#2C1810'/>
+  <rect x='155' y='90' width='90' height='60' rx='6' fill='#1A0E08'/><rect x='160' y='95' width='80' height='50' rx='4' fill='#2C1810'/><rect x='160' y='95' width='80' height='22' rx='4' fill='#3E2212'/>
+  <text x='200' y='230' text-anchor='middle' fill='#FFF' font-size='16' font-family='sans-serif'>🧁 Брауни</text>
+  <text x='200' y='252' text-anchor='middle' fill='#FFF' font-size='13' font-family='sans-serif' opacity='0.8'>двойной шоколад</text>
+</svg>

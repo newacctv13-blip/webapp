@@ -1,0 +1,6 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'>
+  <rect width='400' height='300' rx='16' fill='#E8A0A0'/>
+  <circle cx='180' cy='120' r='22' fill='#D08080'/><circle cx='220' cy='120' r='22' fill='#D08080'/><rect x='183' y='112' width='34' height='16' rx='4' fill='#F0D0D0'/><circle cx='180' cy='120' r='18' fill='#E8A0A0'/><circle cx='220' cy='120' r='18' fill='#E8A0A0'/>
+  <text x='200' y='230' text-anchor='middle' fill='#FFF' font-size='16' font-family='sans-serif'>🍬 Макарон</text>
+  <text x='200' y='252' text-anchor='middle' fill='#FFF' font-size='13' font-family='sans-serif' opacity='0.8'>миндальный</text>
+</svg>

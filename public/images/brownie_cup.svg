@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect width="400" height="300" rx="16" fill="#3E1F0E"/>
+  <path d="M150 160 L160 100 L240 100 L250 160 Z" fill="#2A1508"/>
+  <rect x="155" y="90" width="90" height="15" rx="4" fill="#4A2A14"/>
+  <ellipse cx="200" cy="110" rx="30" ry="10" fill="#5C3A1E"/>
+  <text x="200" y="230" text-anchor="middle" fill="#FFF" font-size="16" font-family="sans-serif">🧁 Брауни</text>
+  <text x="200" y="252" text-anchor="middle" fill="#FFF" font-size="13" font-family="sans-serif" opacity="0.8">в стаканчике</text>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect width="400" height="300" rx="16" fill="#D2691E"/>
+  <rect x="120" y="110" width="50" height="40" rx="6" fill="#B85515"/>
+  <rect x="180" y="110" width="50" height="40" rx="6" fill="#A04810"/>
+  <rect x="240" y="110" width="50" height="40" rx="6" fill="#8B4010"/>
+  <rect x="130" y="115" width="30" height="10" rx="3" fill="#E8C56A"/>
+  <rect x="190" y="115" width="30" height="10" rx="3" fill="#E8C56A"/>
+  <text x="200" y="230" text-anchor="middle" fill="#FFF" font-size="16" font-family="sans-serif">🍬 Ириски</text>
+</svg>

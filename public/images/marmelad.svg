@@ -1,0 +1,6 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'>
+  <rect width='400' height='300' rx='16' fill='#E88080'/>
+  <rect x='150' y='105' width='30' height='40' rx='6' fill='#F0A0A0'/><rect x='185' y='105' width='30' height='40' rx='6' fill='#D06060'/><rect x='220' y='105' width='30' height='40' rx='6' fill='#F090B0'/><rect x='150' y='105' width='30' height='40' rx='6' fill='#F0A0A0' opacity='0.6'/><rect x='185' y='105' width='30' height='40' rx='6' fill='#D06060' opacity='0.6'/><rect x='220' y='105' width='30' height='40' rx='6' fill='#F090B0' opacity='0.6'/>
+  <text x='200' y='230' text-anchor='middle' fill='#FFF' font-size='16' font-family='sans-serif'>🍬 Мармелад</text>
+  <text x='200' y='252' text-anchor='middle' fill='#FFF' font-size='13' font-family='sans-serif' opacity='0.8'>жевательный</text>
+</svg>

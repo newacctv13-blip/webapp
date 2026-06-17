@@ -1,0 +1,6 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'>
+  <rect width='400' height='300' rx='16' fill='#D4953A'/>
+  <rect x='160' y='100' width='80' height='50' rx='8' fill='#C08028'/><rect x='170' y='108' width='60' height='12' rx='2' fill='#E0B060'/><rect x='180' y='125' width='40' height='4' rx='1' fill='#B07020'/>
+  <text x='200' y='230' text-anchor='middle' fill='#FFF' font-size='16' font-family='sans-serif'>🍬 Карамель</text>
+  <text x='200' y='252' text-anchor='middle' fill='#FFF' font-size='13' font-family='sans-serif' opacity='0.8'>сливочная</text>
+</svg>
