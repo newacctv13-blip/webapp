@@ -139,14 +139,14 @@ const App = {
     const savedLang = localStorage.getItem('omnom_lang');
     if (savedLang === 'ru' || savedLang === 'ro') DATA.lang = savedLang;
     ThemeManager.init();
+    this.renderSidebar();
+    this.renderHeader();
+    this.renderWhatsAppFloat();
     Cart.init();
     Cart.on('add', (id) => this.updateAddButton(id, true));
     Cart.on('remove', (id) => this.updateAddButton(id, false));
     Cart.on('changeQty', (id, qty) => this.updateQtyDisplay(id, qty));
     Cart.on('submit', () => this.renderAllProducts());
-    this.renderSidebar();
-    this.renderHeader();
-    this.renderWhatsAppFloat();
     this.renderAllProducts();
     this.setupSidebar();
     this.setupEventListeners();

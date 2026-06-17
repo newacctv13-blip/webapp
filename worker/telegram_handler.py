@@ -100,8 +100,8 @@ class OrderHandler(BaseHTTPRequestHandler):
 
     def do_OPTIONS(self):
         origin = self.headers.get('Origin', '')
-        self._send_cors(origin)
         self.send_response(204)
+        self._send_cors(origin)
         self.end_headers()
 
     def do_POST(self):

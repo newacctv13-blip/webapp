@@ -4,6 +4,7 @@ import { UI } from './ui.js';
 export const Cart = {
   items: [],
   _cbs: {},
+  _deliveryEnabled: true,
 
   on(event, fn) {
     this._cbs[event] = fn;
@@ -18,11 +19,27 @@ export const Cart = {
       const saved = localStorage.getItem('omnom_cart');
       if (saved) this.items = JSON.parse(saved);
     } catch {}
+    const deliveryPref = localStorage.getItem('omnom_delivery');
+    if (deliveryPref !== null) this._deliveryEnabled = deliveryPref === 'true';
     this.render();
   },
 
   get deliveryFee() {
-    return (DATA.settings && DATA.settings.deliveryFee) || 60;
+    return this._deliveryEnabled ? ((DATA.settings && DATA.settings.deliveryFee) || 60) : 0;
+  },
+
+  get deliveryEnabled() {
+    return this._deliveryEnabled;
+  },
+
+  setDeliveryEnabled(enabled) {
+    this._deliveryEnabled = enabled;
+    localStorage.setItem('omnom_delivery', enabled.toString());
+    this.render();
+  },
+
+  toggleDelivery() {
+    this.setDeliveryEnabled(!this._deliveryEnabled);
   },
 
   get waNumber() {
@@ -142,14 +159,23 @@ export const Cart = {
 
     const subtotal = this.getTotal();
     const delivery = subtotal > 0 ? this.deliveryFee : 0;
+    const deliveryLabel = this._deliveryEnabled ? (t.delivery || 'Доставка') : (t.pickup || 'Самовывоз');
     cartSummaryEl.innerHTML = `
       <div class="cart-summary">
         <div class="cart-summary-row">
           <span>${t.total || ''}</span>
           <span>${subtotal} ${cur}</span>
         </div>
-        <div class="cart-summary-row">
+        <div class="cart-summary-row delivery-toggle-row">
           <span>${t.delivery || ''}</span>
+          <label class="delivery-toggle">
+            <input type="checkbox" id="deliveryToggle" ${this._deliveryEnabled ? 'checked' : ''} onchange="Cart.toggleDelivery()" />
+            <span class="toggle-slider"></span>
+            <span class="toggle-label">${deliveryLabel}</span>
+          </label>
+        </div>
+        <div class="cart-summary-row">
+          <span>${deliveryLabel}</span>
           <span>${delivery} ${cur}</span>
         </div>
         <div class="cart-summary-row total">
