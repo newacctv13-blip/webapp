@@ -1650,7 +1650,8 @@ a:hover { text-decoration: underline; }
   .visit-logo { width: 72px; height: 72px; }
   .visit-brand { font-size: 22px; }
   .visit-title { font-size: 18px; margin-bottom: 24px; }
-  .location-card { padding: 18px; gap: 14px; }
+  .location-card:not(.has-image):not(.has-placeholder) { padding: 18px; gap: 14px; }
+  .location-img { height: 160px; }
   .location-icon { width: 40px; height: 40px; font-size: 18px; }
   .location-name { font-size: 14px; }
   .location-desc { font-size: 12px; }
