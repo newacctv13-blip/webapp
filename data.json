@@ -120,7 +120,7 @@
       "id": 1,
       "category": "cakes",
       "price": 25,
-      "image": "images/kartoshka.svg",
+      "image": "images/kartoshka.jpg",
       "name": {
         "ru": "Пирожное картошка",
         "ro": "Prăjitura Cartof"
@@ -302,7 +302,7 @@
       "id": 14,
       "category": "cakes",
       "price": 35,
-      "image": "images/napoleon.svg",
+      "image": "images/napoleon.jpg",
       "name": {
         "ru": "Наполеон порционный",
         "ro": "Napoleon porționat"
@@ -316,7 +316,7 @@
       "id": 15,
       "category": "cakes",
       "price": 30,
-      "image": "images/ecler.svg",
+      "image": "images/ecler.jpg",
       "name": {
         "ru": "Эклер заварной",
         "ro": "Ecler cu cremă de patiserie"

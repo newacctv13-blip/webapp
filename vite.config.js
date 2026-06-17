@@ -30,6 +30,7 @@ export default defineConfig({
           );
         writeFileSync(resolve(dist, 'index.html'), result, 'utf-8');
         copyFileSync(resolve(__dirname, 'data.json'), resolve(dist, 'data.json'));
+        copyFileSync(resolve(__dirname, 'visit.html'), resolve(dist, 'visit.html'));
       },
     },
   ],
