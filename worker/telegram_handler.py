@@ -12,6 +12,7 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 from urllib.request import Request, urlopen
 from urllib.error import URLError, HTTPError
 from datetime import datetime
+import re
 
 BOT_TOKEN = os.environ.get('BOT_TOKEN')
 ADMIN_CHAT_ID = os.environ.get('ADMIN_CHAT_ID')
@@ -23,6 +24,15 @@ ALLOWED_ORIGINS = [
     'http://127.0.0.1:5173',
     'https://newacctv13-blip.github.io',
 ]
+
+def is_origin_allowed(origin):
+    if not origin:
+        return False
+    if origin in ALLOWED_ORIGINS:
+        return True
+    if re.match(r'^https?://(localhost|127\.0\.0\.1)(:\d+)?$', origin):
+        return True
+    return False
 
 
 def escape_html(text):
@@ -96,6 +106,8 @@ class OrderHandler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         origin = self.headers.get('Origin', '')
+        client = self.client_address[0]
+        print(f'[{datetime.now().strftime("%H:%M:%S")}] POST /notify from {client} origin={origin}')
 
         if self.path != '/notify':
             self._json_response({'error': 'Not found'}, 404, origin)
@@ -131,14 +143,17 @@ class OrderHandler(BaseHTTPRequestHandler):
             message = format_order_message(order)
             ok, err = send_telegram(message)
             if ok:
+                print(f'  -> заказ от {order.get("name")} отправлен в Telegram')
                 self._json_response({'ok': True}, 200, origin)
             else:
+                print(f'  -> ОШИБКА Telegram: {err}')
                 self._json_response({'ok': False, 'error': err}, 502, origin)
         except Exception as e:
+            print(f'  -> ОШИБКА: {e}')
             self._json_response({'ok': False, 'error': str(e)}, 502, origin)
 
     def _send_cors(self, origin):
-        if origin in ALLOWED_ORIGINS:
+        if is_origin_allowed(origin):
             self.send_header('Access-Control-Allow-Origin', origin)
             self.send_header('Access-Control-Allow-Methods', 'POST, OPTIONS')
             self.send_header('Access-Control-Allow-Headers', 'Content-Type')

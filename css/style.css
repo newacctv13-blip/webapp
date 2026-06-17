@@ -523,7 +523,12 @@ a:hover { text-decoration: underline; }
   color: var(--secondary);
 }
 
-.hero-actions { flex-shrink: 0; }
+.hero-actions {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 
 .hero-description {
   font-size: 14px;
@@ -533,12 +538,34 @@ a:hover { text-decoration: underline; }
   max-width: 680px;
 }
 
+.hero-desc-full { display: none; }
+
+.hero-description.expanded .hero-desc-short,
+.hero-description.expanded .hero-desc-ellipsis { display: none; }
+
+.hero-description.expanded .hero-desc-full { display: inline; }
+
+.hero-desc-toggle {
+  display: block;
+  margin-top: 6px;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  cursor: pointer;
+  font-family: var(--font);
+  transition: color 0.2s ease;
+}
+
+.hero-desc-toggle:hover { color: var(--accent-hover); }
+
 .hero-visit-btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   padding: 10px 24px;
-  margin-bottom: 20px;
   border-radius: var(--radius-full);
   background: var(--accent);
   color: var(--text-white);
@@ -578,13 +605,13 @@ a:hover { text-decoration: underline; }
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 20px;
+  padding: 10px 24px;
   background: var(--accent);
   border: none;
   border-radius: var(--radius-full);
   color: var(--text-white);
   cursor: pointer;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   white-space: nowrap;
   font-family: var(--font);
@@ -766,6 +793,7 @@ a:hover { text-decoration: underline; }
   aspect-ratio: 4/3;
   object-fit: cover;
   display: block;
+  cursor: pointer;
   opacity: 0;
   animation: imgFadeIn 0.6s ease forwards;
   animation-delay: var(--img-delay, 0.1s);
@@ -1138,6 +1166,117 @@ a:hover { text-decoration: underline; }
 
 .mobile-menu-btn:hover { background: var(--accent-hover); }
 
+/* ─── Product Modal ─── */
+.category-header { cursor: pointer; }
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  max-width: 520px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  animation: modalIn 0.3s ease;
+}
+
+@keyframes modalIn {
+  from { transform: scale(0.9) translateY(20px); opacity: 0; }
+  to { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: var(--bg-card);
+  color: var(--primary);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease;
+}
+
+.modal-close:hover { transform: scale(1.1); }
+
+.modal-content { position: relative; }
+
+.modal-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.modal-body { padding: 20px 24px 24px; }
+
+.modal-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+.modal-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--secondary);
+  margin-bottom: 20px;
+}
+
+.modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.modal-price {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--price);
+}
+
+.modal-price small {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.modal-footer .btn-cart {
+  padding: 10px 28px;
+  font-size: 14px;
+}
+
 /* ─── Responsive ─── */
 @media (max-width: 900px) {
   .product-card { flex: 0 0 170px; }
@@ -1178,8 +1317,9 @@ a:hover { text-decoration: underline; }
 
   .hero-title { font-size: 22px; }
   .hero-description { font-size: 13px; text-align: center; }
-  .hero-actions { width: 100%; }
+  .hero-actions { width: 100%; flex-direction: column; gap: 10px; }
 
+  .hero-visit-btn, .hero-visit-btn:hover { margin-bottom: 0; width: 100%; justify-content: center; }
   .cart-toggle-header { width: 100%; justify-content: center; }
   .hero-meta { justify-content: center; gap: 8px 14px; }
   .hero-meta-item { font-size: 12px; }
@@ -1465,4 +1605,27 @@ a:hover { text-decoration: underline; }
   .location-desc { font-size: 12px; }
   .visit-contacts { gap: 8px 14px; }
   .visit-contact-item { font-size: 12px; }
+}
+
+.order-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--primary);
+  color: var(--bg);
+  padding: 14px 24px;
+  border-radius: var(--radius-full);
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 10000;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  animation: toast-in 0.3s ease;
+  max-width: 90vw;
+  text-align: center;
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
 }

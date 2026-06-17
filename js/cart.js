@@ -227,8 +227,10 @@ export const Cart = {
         this.clear();
         UI.closeCart();
         this._emit('submit');
+        this._showToast('Заказ отправлен! Мы свяжемся с вами');
       })
-      .catch(() => {
+      .catch(err => {
+        console.warn('Worker недоступен, fallback:', err.message);
         this._sendViaFallback(fallbackMsg);
       });
   },
@@ -242,6 +244,17 @@ export const Cart = {
     this.clear();
     UI.closeCart();
     this._emit('submit');
+    this._showToast('Откроется Telegram — отправьте сообщение вручную');
+  },
+
+  _showToast(message) {
+    const existing = document.querySelector('.order-toast');
+    if (existing) existing.remove();
+    const toast = document.createElement('div');
+    toast.className = 'order-toast';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 5000);
   }
 };
 

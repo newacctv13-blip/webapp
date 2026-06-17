@@ -181,7 +181,7 @@ const App = {
     document.getElementById('header').innerHTML = `
       <div class="hero">
         <div class="hero-logo">
-          <img src="images/logo.svg" alt="Omnom & SweetMe" class="hero-logo-img" />
+          <a href="index.html"><img src="images/logo.svg" alt="Omnom & SweetMe" class="hero-logo-img" /></a>
         </div>
         <div class="hero-content">
           <div class="hero-top">
@@ -190,13 +190,17 @@ const App = {
               <p class="hero-subtitle">${t('subtitle')}</p>
             </div>
             <div class="hero-actions">
+              <a class="hero-visit-btn" href="visit.html">${t('whereToFind')}</a>
               <button class="cart-toggle-header" onclick="UI.openCart()">
                 🛒 ${t('cart')} <span class="cart-badge" id="cartBadgeHeader">0</span>
               </button>
             </div>
           </div>
-          <p class="hero-description">${t('description')}</p>
-          <a class="hero-visit-btn" href="visit.html">${t('whereToFind')}</a>
+          <div class="hero-description" id="heroDesc">
+            <span class="hero-desc-short">${t('description').slice(0, Math.ceil(t('description').length / 2))}</span><span class="hero-desc-ellipsis">...</span>
+            <span class="hero-desc-full">${t('description')}</span>
+            <button class="hero-desc-toggle" onclick="App.toggleHeroDesc()">читать далее</button>
+          </div>
           <div class="hero-meta">
             <span class="hero-meta-item"><span class="icon">🕐</span> ${t('workMode')}</span>
             <span class="hero-meta-item"><span class="icon">📍</span> <a href="${s.mapsUrl || '#'}" target="_blank">${s.city || 'Chișinău'}</a></span>
@@ -262,7 +266,7 @@ const App = {
         const catProducts = DATA.products.filter(p => p.category === cat.id);
         if (catProducts.length === 0) return;
       html += `<div class="section reveal" id="section-${cat.id}"><div class="products-grid">
-        <div class="category-header">
+        <div class="category-header" data-cat="${cat.id}">
           <span class="cat-icon">${cat.icon || '📦'}</span>
           <span class="cat-name">${catT[cat.id] || cat.id}</span>
           <span class="cat-count">${catProducts.length} ${unit}</span>
@@ -287,7 +291,7 @@ const App = {
 
     return `
       <div class="product-card" data-id="${product.id}" style="--card-delay:${cardDelay}s;--img-delay:${imgDelay}s">
-        <img src="${product.image}" alt="${product.name[lang]}" loading="lazy" />
+        <img src="${product.image}" alt="${product.name[lang]}" loading="lazy" data-product-id="${product.id}" />
         <div class="product-body">
           <div class="product-name">${product.name[lang]}</div>
           <div class="product-desc">${product.desc[lang]}</div>
@@ -307,6 +311,38 @@ const App = {
           </div>
         </div>
       </div>`;
+  },
+
+  toggleHeroDesc() {
+    const el = document.getElementById('heroDesc');
+    if (!el) return;
+    const expanded = el.classList.toggle('expanded');
+    el.querySelector('.hero-desc-toggle').textContent = expanded ? 'скрыть' : 'читать далее';
+  },
+
+  openModal(productId) {
+    const product = DATA.products.find(p => p.id === productId);
+    if (!product) return;
+    const lang = DATA.lang;
+    const t = this.t;
+    const modal = document.getElementById('productModal');
+    document.getElementById('modalImg').src = product.image;
+    document.getElementById('modalImg').alt = product.name[lang];
+    document.getElementById('modalName').textContent = product.name[lang];
+    document.getElementById('modalDesc').textContent = product.desc[lang];
+    document.getElementById('modalPrice').innerHTML = `${product.price} <small>${DATA.settings.currency || 'L'}</small>`;
+    const btn = document.getElementById('modalAddBtn');
+    const inCart = Cart.getQty(product.id) > 0;
+    btn.textContent = inCart ? '✓' : t('addToCart');
+    btn.className = 'btn-cart' + (inCart ? ' added' : '');
+    btn.onclick = () => { Cart.add(product.id); btn.textContent = '✓'; btn.classList.add('added'); };
+    modal.classList.add('visible');
+    document.body.style.overflow = 'hidden';
+  },
+
+  closeModal() {
+    document.getElementById('productModal').classList.remove('visible');
+    document.body.style.overflow = '';
   },
 
   updateAddButton(productId, inCart) {
@@ -413,6 +449,39 @@ const App = {
       mobileBtn.addEventListener('click', () => {
         const isOpen = sidebar.classList.toggle('open');
         overlay.classList.toggle('visible', isOpen);
+      });
+    }
+
+    const filterToCategory = (cat) => {
+      this.currentCategory = cat === 'all' ? null : cat;
+      this.renderAllProducts();
+      document.querySelectorAll('.reveal:not(.visible)').forEach(el => ScrollReveal.observe(el));
+      if (nav) {
+        nav.querySelectorAll('li').forEach(l => l.classList.toggle('active', l.dataset.cat === cat));
+      }
+    };
+
+    document.addEventListener('click', (e) => {
+      const catHeader = e.target.closest('.category-header[data-cat]');
+      if (catHeader) {
+        filterToCategory(catHeader.dataset.cat);
+        return;
+      }
+      const img = e.target.closest('.product-card img[data-product-id]');
+      if (img) {
+        this.openModal(Number(img.dataset.productId));
+        return;
+      }
+    });
+
+    const modal = document.getElementById('productModal');
+    if (modal) {
+      document.getElementById('modalClose').addEventListener('click', () => this.closeModal());
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) this.closeModal();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') this.closeModal();
       });
     }
 
