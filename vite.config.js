@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
-import { readFileSync, writeFileSync, copyFileSync } from 'fs';
-import { resolve } from 'path';
+import { readFileSync, writeFileSync, copyFileSync, existsSync, mkdirSync } from 'fs';
+import { resolve, dirname } from 'path';
 
 export default defineConfig({
   base: './',
@@ -31,6 +31,12 @@ export default defineConfig({
         writeFileSync(resolve(dist, 'index.html'), result, 'utf-8');
         copyFileSync(resolve(__dirname, 'data.json'), resolve(dist, 'data.json'));
         copyFileSync(resolve(__dirname, 'visit.html'), resolve(dist, 'visit.html'));
+        const cssSrc = resolve(__dirname, 'css', 'style.css');
+        const cssDst = resolve(dist, 'css', 'style.css');
+        if (existsSync(cssSrc)) {
+          mkdirSync(resolve(dist, 'css'), { recursive: true });
+          copyFileSync(cssSrc, cssDst);
+        }
       },
     },
   ],
