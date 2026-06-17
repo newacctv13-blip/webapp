@@ -470,7 +470,7 @@
       "id": 21,
       "category": "nuts",
       "price": 20,
-      "image": "images/oreshki_fistashka.svg",
+      "image": "images/oreshki_fistashka.jpg",
       "name": {
         "ru": "Орешки фисташковые",
         "ro": "Nucișoare cu fistic"
@@ -498,7 +498,7 @@
       "id": 23,
       "category": "nuts",
       "price": 20,
-      "image": "images/oreshki_coco.svg",
+      "image": "images/oreshki_coco.jpg",
       "name": {
         "ru": "Орешки кокосовые",
         "ro": "Nucișoare cu cocos"
