@@ -1,0 +1,5 @@
+﻿@
+node_modules/
+worker/
+worker/config.local.json
+worker/start_handler.cmd
