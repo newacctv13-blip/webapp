@@ -6,7 +6,7 @@
     "instagramUrl": "https://www.instagram.com/sweetme.md/",
     "whatsappNumber": "37376732386",
     "telegramUsername": "uzumakigirju",
-    "orderWorkerUrl": "http://127.0.0.1:8765/notify",
+    "orderWorkerUrl": "https://omnom-notify.newacctv13.workers.dev/notify",
     "city": "Chișinău",
     "address": "str. Ginta Latină 12/13",
     "mapsUrl": "https://maps.app.goo.gl/wXWWvyBL8gUY5gfd8",

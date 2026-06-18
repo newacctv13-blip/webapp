@@ -241,8 +241,7 @@ export const Cart = {
   },
 
   _getWorkerUrl() {
-    const fromStorage = localStorage.getItem('omnom_worker');
-    if (fromStorage) return fromStorage;
+    const s = DATA.settings || {};
     const params = new URLSearchParams(window.location.search);
     const fromQuery = params.get('worker');
     if (fromQuery) {
@@ -252,8 +251,11 @@ export const Cart = {
       localStorage.setItem('omnom_worker', url);
       return url;
     }
-    const s = DATA.settings || {};
-    return s.orderWorkerUrl || '';
+    if (s.orderWorkerUrl) {
+      return s.orderWorkerUrl;
+    }
+    const fromStorage = localStorage.getItem('omnom_worker');
+    return fromStorage || '';
   },
 
   _sendViaWorker(workerUrl, orderData, fallbackMsg) {
