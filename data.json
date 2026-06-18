@@ -6,7 +6,7 @@
     "instagramUrl": "https://www.instagram.com/sweetme.md/",
     "whatsappNumber": "37376732386",
     "telegramUsername": "uzumakigirju",
-    "orderWorkerUrl": "https://quickness-enduring-hastiness.ngrok-free.dev/notify",
+    "orderWorkerUrl": "https://omnom-notify.newacctv13.workers.dev/notify",
     "city": "Chișinău",
     "address": "str. Ginta Latină 12/13",
     "mapsUrl": "https://maps.app.goo.gl/wXWWvyBL8gUY5gfd8",
@@ -680,15 +680,15 @@
   "locations": [
     {
       "id": "yardsale",
-      "icon": "🛒",
+      "icon": "\ud83d\uded2",
       "image": "images/yardsale.jpg",
       "name": {
         "ru": "YardSale Market",
-        "ro": "Târgul YardSale"
+        "ro": "T\u00e2rgul YardSale"
       },
       "desc": {
-        "ru": "Дизайн-маркет в центре Кишинёва. Регулярные ярмарки во дворе Teatrul Gastronomic (ул. Штефан чел Маре, 103). Винтаж, хендмейд, домашние десерты, живая музыка. Вход свободный.",
-        "ro": "Târg de design în centrul Chișinăului, în curtea Teatrului Gastronomic (str. Ștefan cel Mare, 103). Vintage, handmade, deserturi de casă, muzică live. Intrarea liberă."
+        "ru": "\u0414\u0438\u0437\u0430\u0439\u043d-\u043c\u0430\u0440\u043a\u0435\u0442 \u0432 \u0446\u0435\u043d\u0442\u0440\u0435 \u041a\u0438\u0448\u0438\u043d\u0451\u0432\u0430. \u0420\u0435\u0433\u0443\u043b\u044f\u0440\u043d\u044b\u0435 \u044f\u0440\u043c\u0430\u0440\u043a\u0438 \u0432\u043e \u0434\u0432\u043e\u0440\u0435 Teatrul Gastronomic (\u0443\u043b. \u0428\u0442\u0435\u0444\u0430\u043d \u0447\u0435\u043b \u041c\u0430\u0440\u0435, 103). \u0412\u0438\u043d\u0442\u0430\u0436, \u0445\u0435\u043d\u0434\u043c\u0435\u0439\u0434, \u0434\u043e\u043c\u0430\u0448\u043d\u0438\u0435 \u0434\u0435\u0441\u0435\u0440\u0442\u044b, \u0436\u0438\u0432\u0430\u044f \u043c\u0443\u0437\u044b\u043a\u0430. \u0412\u0445\u043e\u0434 \u0441\u0432\u043e\u0431\u043e\u0434\u043d\u044b\u0439.",
+        "ro": "T\u00e2rg de design \u00een centrul Chi\u0219in\u0103ului, \u00een curtea Teatrului Gastronomic (str. \u0218tefan cel Mare, 103). Vintage, handmade, deserturi de cas\u0103, muzic\u0103 live. Intrarea liber\u0103."
       },
       "url": "https://www.instagram.com/yardsale_md/",
       "urlLabel": {
@@ -698,15 +698,15 @@
     },
     {
       "id": "ecolocal",
-      "icon": "🌿",
+      "icon": "\ud83c\udf3f",
       "image": "images/ecolocal.jpg",
       "name": {
         "ru": "EcoLocal Farmers Market",
         "ro": "EcoLocal Farmers Market"
       },
       "desc": {
-        "ru": "Фермерская ярмарка экопродуктов. Каждую субботу 9:00–13:00, сектор Буюкань (bd. Ștefan cel Mare, 202, у бизнес-центра Kentford). Домашние сыры, органика, мёд, сухофрукты и наши десерты.",
-        "ro": "Târg fermier de produse eco. Sâmbăta 9:00–13:00, sectorul Buiucani (bd. Ștefan cel Mare, 202, lângă centrul de afaceri Kentford). Brânzeturi de casă, organice, miere, fructe uscate și deserturile noastre."
+        "ru": "\u0424\u0435\u0440\u043c\u0435\u0440\u0441\u043a\u0430\u044f \u044f\u0440\u043c\u0430\u0440\u043a\u0430 \u044d\u043a\u043e\u043f\u0440\u043e\u0434\u0443\u043a\u0442\u043e\u0432. \u041a\u0430\u0436\u0434\u0443\u044e \u0441\u0443\u0431\u0431\u043e\u0442\u0443 9:00\u201313:00, \u0441\u0435\u043a\u0442\u043e\u0440 \u0411\u0443\u044e\u043a\u0430\u043d\u044c (bd. \u0218tefan cel Mare, 202, \u0443 \u0431\u0438\u0437\u043d\u0435\u0441-\u0446\u0435\u043d\u0442\u0440\u0430 Kentford). \u0414\u043e\u043c\u0430\u0448\u043d\u0438\u0435 \u0441\u044b\u0440\u044b, \u043e\u0440\u0433\u0430\u043d\u0438\u043a\u0430, \u043c\u0451\u0434, \u0441\u0443\u0445\u043e\u0444\u0440\u0443\u043a\u0442\u044b \u0438 \u043d\u0430\u0448\u0438 \u0434\u0435\u0441\u0435\u0440\u0442\u044b.",
+        "ro": "T\u00e2rg fermier de produse eco. S\u00e2mb\u0103ta 9:00\u201313:00, sectorul Buiucani (bd. \u0218tefan cel Mare, 202, l\u00e2ng\u0103 centrul de afaceri Kentford). Br\u00e2nzeturi de cas\u0103, organice, miere, fructe uscate \u0219i deserturile noastre."
       },
       "url": "https://www.instagram.com/ecolocalmoldova/",
       "urlLabel": {
@@ -716,20 +716,20 @@
     },
     {
       "id": "amica",
-      "icon": "☕",
+      "icon": "\u2615",
       "image": "",
       "name": {
         "ru": "Amica Cafe",
         "ro": "Amica Cafe"
       },
       "desc": {
-        "ru": "Уютное кафе в Криково, рядом с универмагом Linella. Здесь можно попробовать наши десерты в тёплой атмосфере. Следите за открытием!",
-        "ro": "Cafenea confortabilă în Cricova, lângă supermarketul Linella. Deserturile noastre într-o atmosferă plăcută. Urmează deschiderea!"
+        "ru": "\u0423\u044e\u0442\u043d\u043e\u0435 \u043a\u0430\u0444\u0435 \u0432 \u041a\u0440\u0438\u043a\u043e\u0432\u043e, \u0440\u044f\u0434\u043e\u043c \u0441 \u0443\u043d\u0438\u0432\u0435\u0440\u043c\u0430\u0433\u043e\u043c Linella. \u0417\u0434\u0435\u0441\u044c \u043c\u043e\u0436\u043d\u043e \u043f\u043e\u043f\u0440\u043e\u0431\u043e\u0432\u0430\u0442\u044c \u043d\u0430\u0448\u0438 \u0434\u0435\u0441\u0435\u0440\u0442\u044b \u0432 \u0442\u0451\u043f\u043b\u043e\u0439 \u0430\u0442\u043c\u043e\u0441\u0444\u0435\u0440\u0435. \u0421\u043b\u0435\u0434\u0438\u0442\u0435 \u0437\u0430 \u043e\u0442\u043a\u0440\u044b\u0442\u0438\u0435\u043c!",
+        "ro": "Cafenea confortabil\u0103 \u00een Cricova, l\u00e2ng\u0103 supermarketul Linella. Deserturile noastre \u00eentr-o atmosfer\u0103 pl\u0103cut\u0103. Urmeaz\u0103 deschiderea!"
       },
       "url": "https://maps.app.goo.gl/mKNEnrGAiXf2GWgf7",
       "urlLabel": {
-        "ru": "Открыть на карте",
-        "ro": "Deschide pe hartă"
+        "ru": "\u041e\u0442\u043a\u0440\u044b\u0442\u044c \u043d\u0430 \u043a\u0430\u0440\u0442\u0435",
+        "ro": "Deschide pe hart\u0103"
       }
     }
   ]
