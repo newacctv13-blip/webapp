@@ -32,6 +32,9 @@ echo.
 echo   https://newacctv13-blip.github.io/webapp/?worker=https://XXXX.ngrok-free.app
 echo.
 echo   ^(замени XXXX на адрес из окна ngrok^)
+echo.
+echo   Или используй Python-скрипт ^(сам обновит GitHub^):
+echo   python worker\start_online.py
 echo ====================================
 echo.
 

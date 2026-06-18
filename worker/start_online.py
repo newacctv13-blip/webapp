@@ -55,6 +55,14 @@ def get_github_token():
     env_token = os.environ.get("GITHUB_TOKEN")
     if env_token:
         return env_token
+    config_path = os.path.join(os.path.dirname(__file__), "config.local.json")
+    if os.path.exists(config_path):
+        try:
+            with open(config_path) as f:
+                cfg = json.load(f)
+                return cfg.get("github_token", "")
+        except Exception:
+            pass
     try:
         result = subprocess.run(
             ["gh", "auth", "token"],
