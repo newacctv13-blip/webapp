@@ -1,0 +1,6 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'>
+  <rect width='400' height='300' rx='16' fill='#E8C060'/>
+  <path d='M150 160 L145 90 Q200 80 255 90 L250 160 Z' fill='#D4A840'/><ellipse cx='200' cy='110' rx='35' ry='20' fill='#F0D080'/><circle cx='200' cy='110' r='12' fill='#E8B030'/>
+  <text x='200' y='230' text-anchor='middle' fill='#FFF' font-size='16' font-family='sans-serif'>🍰 Ватрушка</text>
+  <text x='200' y='252' text-anchor='middle' fill='#FFF' font-size='13' font-family='sans-serif' opacity='0.8'>королевская</text>
+</svg>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Omnom & SweetMe — натуральные десерты ручной работы в Кишинёве. Пирожные, трубочки, орешки, брауни и другие сладости. Доставка по городу." />
+  <title>Omnom & SweetMe — Десерты со вкусом детства</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    (function(){
+      var theme = localStorage.getItem('omnom_theme');
+      if (!theme) {
+        var hour = new Date().getHours();
+        theme = (hour >= 6 && hour < 20) ? 'light' : 'dark';
+      }
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+  <script defer src="./assets/index-D6Lsdhix.js"></script>
+</head>
+<body>
+
+  <button class="theme-toggle" id="themeToggle" aria-label="Switch theme">
+    <span class="toggle-track"></span>
+    <span class="toggle-icons"><span>☀️</span><span>🌙</span></span>
+  </button>
+
+  <div class="sidebar-trigger" id="sidebarTrigger"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="logo-placeholder" id="logoPlaceholder">
+        <div class="logo-icon">OS</div>
+      </div>
+      <h1>Omnom & SweetMe</h1>
+      <div class="subtitle" id="sidebarSubtitle">Загрузка...</div>
+      <div class="lang-switch">
+        <button class="lang-btn active" onclick="App.setLang('ru')">RU</button>
+        <button class="lang-btn" onclick="App.setLang('ro')">RO</button>
+      </div>
+    </div>
+    <ul class="sidebar-nav" id="sidebarNav"></ul>
+  </aside>
+
+  <div class="overlay" id="overlay"></div>
+
+  <div class="main" id="mainContent">
+    <header class="header" id="header">
+      <div class="header-loading">
+        <div class="spinner"></div>
+        <p>Загрузка меню...</p>
+      </div>
+    </header>
+
+    <main id="productsContainer"></main>
+  </div>
+
+  <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+
+  <div class="cart-overlay" id="cartOverlay"></div>
+
+  <aside class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h2 id="cartTitle">Корзина</h2>
+      <button class="cart-close" id="cartClose">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty">Корзина пуста</div>
+    </div>
+    <div class="cart-footer" id="cartSummary"></div>
+  </aside>
+
+  <div class="modal-overlay" id="productModal">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">✕</button>
+      <img class="modal-img" id="modalImg" src="" alt="" />
+      <div class="modal-body">
+        <div class="modal-name" id="modalName"></div>
+        <div class="modal-desc" id="modalDesc"></div>
+        <div class="modal-footer">
+          <div class="modal-price" id="modalPrice"></div>
+          <button class="btn-cart" id="modalAddBtn">В корзину</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

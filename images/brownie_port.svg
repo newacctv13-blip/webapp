@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect width="400" height="300" rx="16" fill="#4A2A14"/>
+  <rect x="130" y="90" width="140" height="100" rx="8" fill="#2A1508"/>
+  <rect x="140" y="100" width="120" height="80" rx="4" fill="#3E1F0E"/>
+  <circle cx="170" cy="130" r="10" fill="#5C3A1E"/>
+  <circle cx="220" cy="150" r="8" fill="#5C3A1E"/>
+  <circle cx="200" cy="110" r="6" fill="#5C3A1E"/>
+  <text x="200" y="230" text-anchor="middle" fill="#FFF" font-size="16" font-family="sans-serif">🧁 Брауни</text>
+  <text x="200" y="252" text-anchor="middle" fill="#FFF" font-size="13" font-family="sans-serif" opacity="0.8">порционный</text>
+</svg>

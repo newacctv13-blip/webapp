@@ -1,0 +1,6 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'>
+  <rect width='400' height='300' rx='16' fill='#FFF8DC'/>
+  <rect x='155' y='80' width='90' height='60' rx='8' fill='#F0E6C0'/><rect x='155' y='100' width='90' height='40' rx='6' fill='#FFF0D0'/><circle cx='200' cy='90' r='20' fill='#D04040' opacity='0.8'/><circle cx='200' cy='90' r='10' fill='#E06060' opacity='0.9'/>
+  <text x='200' y='230' text-anchor='middle' fill='#FFF' font-size='16' font-family='sans-serif'>🍰 Чизкейк</text>
+  <text x='200' y='252' text-anchor='middle' fill='#FFF' font-size='13' font-family='sans-serif' opacity='0.8'>Нью-Йорк</text>
+</svg>

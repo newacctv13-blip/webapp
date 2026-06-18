@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect width="400" height="300" rx="16" fill="#CD853F"/>
+  <circle cx="150" cy="130" r="35" fill="#A0522D"/>
+  <circle cx="220" cy="115" r="35" fill="#DEB887"/>
+  <circle cx="260" cy="150" r="35" fill="#8B7355"/>
+  <text x="200" y="230" text-anchor="middle" fill="#FFF" font-size="16" font-family="sans-serif">🥜 Орешки</text>
+  <text x="200" y="252" text-anchor="middle" fill="#FFF" font-size="13" font-family="sans-serif" opacity="0.8">разные начинки</text>
+</svg>

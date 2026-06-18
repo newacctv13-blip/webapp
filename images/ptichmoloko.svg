@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect width="400" height="300" rx="16" fill="#6B3A7A"/>
+  <rect x="130" y="90" width="140" height="100" rx="12" fill="#4A2660"/>
+  <rect x="140" y="100" width="120" height="80" rx="8" fill="#8B5E9E"/>
+  <rect x="145" y="105" width="110" height="70" rx="6" fill="#B088C0"/>
+  <text x="200" y="230" text-anchor="middle" fill="#FFF" font-size="16" font-family="sans-serif">🍫 Птичье молоко</text>
+</svg>

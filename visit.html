@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Omnom & SweetMe — где нас найти? Yardsale Market, EcoLocal Farmers Market, Amica Cafe в Кишинёве и Криково." />
+  <title>Omnom & SweetMe — Где нас найти</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+  <script>
+    (function(){
+      var theme = localStorage.getItem('omnom_theme');
+      if (!theme) {
+        var hour = new Date().getHours();
+        theme = (hour >= 6 && hour < 20) ? 'light' : 'dark';
+      }
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body>
+
+  <button class="theme-toggle" id="themeToggle" aria-label="Switch theme">
+    <span class="toggle-track"></span>
+    <span class="toggle-icons"><span>☀️</span><span>🌙</span></span>
+  </button>
+
+  <div class="visit-page">
+    <header class="visit-header">
+      <img src="images/logo.svg" alt="Omnom & SweetMe" class="visit-logo" />
+      <div class="visit-brand">Omnom & SweetMe</div>
+      <div class="visit-subtitle" id="visitSubtitle">Десерты со вкусом детства</div>
+      <div class="lang-switch" style="justify-content:center;margin-top:12px">
+        <button class="lang-btn active" onclick="Visit.setLang('ru')">RU</button>
+        <button class="lang-btn" onclick="Visit.setLang('ro')">RO</button>
+      </div>
+    </header>
+
+    <a class="visit-back" href="index.html" id="visitBackTop" style="display:inline-flex;margin-bottom:24px">← <span id="backLabel">Наше меню</span></a>
+
+    <h1 class="visit-title" id="visitTitle">Где нас найти?</h1>
+
+    <div class="location-grid" id="locationGrid"></div>
+
+    <footer class="visit-footer">
+      <div class="visit-contacts" id="visitContacts"></div>
+      <a class="visit-back" href="index.html" id="visitBack">← Наше меню</a>
+    </footer>
+  </div>
+
+  <script>
+    const Visit = {
+      lang: 'ru',
+      data: null,
+
+      t(key) {
+        const lang = this.lang;
+        const keys = key.split('.');
+        let val = this.data.translations[lang];
+        for (const k of keys) {
+          if (val && val[k] !== undefined) val = val[k];
+          else return key;
+        }
+        return val;
+      },
+
+      async init() {
+        try {
+          const res = await fetch('data.json');
+          this.data = await res.json();
+        } catch {
+          document.getElementById('locationGrid').innerHTML =
+            '<p style="text-align:center;color:var(--secondary)">Ошибка загрузки данных</p>';
+          return;
+        }
+
+        const savedLang = localStorage.getItem('omnom_lang');
+        if (savedLang === 'ru' || savedLang === 'ro') this.lang = savedLang;
+        else this.lang = this.data.lang || 'ru';
+
+        this.render();
+        this.setupTheme();
+      },
+
+      render() {
+        const s = this.data.settings || {};
+
+        document.getElementById('visitSubtitle').textContent = this.t('subtitle');
+
+        document.querySelectorAll('.lang-btn').forEach(b => {
+          b.classList.toggle('active', b.textContent === this.lang.toUpperCase());
+        });
+
+        document.getElementById('visitTitle').textContent =
+          this.lang === 'ru' ? 'Где нас найти?' : 'Unde ne găsiți?';
+
+        document.getElementById('visitBack').textContent =
+          this.lang === 'ru' ? '← Наше меню' : '← Meniul nostru';
+        document.getElementById('backLabel').textContent =
+          this.lang === 'ru' ? 'Наше меню' : 'Meniul nostru';
+
+        const grid = document.getElementById('locationGrid');
+        const locations = this.data.locations || [];
+        grid.innerHTML = locations.map(loc => `
+          <div class="location-card reveal${loc.image ? ' has-image' : ' has-placeholder'}">
+            ${loc.image
+              ? `<img class="location-img" src="${loc.image}" alt="${loc.name[this.lang] || loc.name.ru}" loading="lazy" />`
+              : `<div class="location-img-placeholder"><span class="location-img-icon">${loc.icon}</span></div>`}
+            ${loc.image ? `<div class="location-icon">${loc.icon}</div>` : ''}
+            <div class="location-body">
+              <div class="location-name">${loc.name[this.lang] || loc.name.ru}</div>
+              <div class="location-desc">${loc.desc[this.lang] || loc.desc.ru}</div>
+              <a class="location-link" href="${loc.url}" target="_blank" rel="noopener">
+                ${loc.urlLabel[this.lang] || loc.urlLabel.ru} ↗
+              </a>
+            </div>
+          </div>
+        `).join('');
+
+        requestAnimationFrame(() => {
+          grid.querySelectorAll('.reveal').forEach((el, i) => {
+            setTimeout(() => el.classList.add('visible'), i * 100);
+          });
+        });
+
+        const contacts = document.getElementById('visitContacts');
+        const phone = s.phone || '+37376732386';
+        const instagramUrl = s.instagramUrl || '#';
+        const tgUser = s.telegramUsername || '';
+        contacts.innerHTML = `
+          <span class="visit-contact-item">📞 <a href="tel:${phone}">${phone}</a></span>
+          <span class="visit-contact-item">📸 <a href="${instagramUrl}" target="_blank">${this.t('instagram')}</a></span>
+          ${tgUser ? `<span class="visit-contact-item">✈️ <a href="https://t.me/${tgUser}" target="_blank">Telegram</a></span>` : ''}
+        `;
+      },
+
+      setLang(lang) {
+        this.lang = lang;
+        localStorage.setItem('omnom_lang', lang);
+        this.render();
+      },
+
+      setupTheme() {
+        const toggle = document.getElementById('themeToggle');
+        toggle.addEventListener('click', () => {
+          const current = document.documentElement.getAttribute('data-theme') || 'light';
+          const next = current === 'light' ? 'dark' : 'light';
+          localStorage.setItem('omnom_theme', next);
+          const html = document.documentElement;
+          html.classList.add('theme-transitioning');
+          html.setAttribute('data-theme', next);
+          requestAnimationFrame(() => {
+            setTimeout(() => html.classList.remove('theme-transitioning'), 500);
+          });
+        });
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => Visit.init());
+  </script>
+</body>
+</html>

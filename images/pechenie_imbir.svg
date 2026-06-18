@@ -1,0 +1,6 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'>
+  <rect width='400' height='300' rx='16' fill='#C4844A'/>
+  <circle cx='160' cy='130' r='35' fill='#B07038'/><circle cx='240' cy='130' r='35' fill='#B07038'/><path d='M150 125 L160 115 L170 125 L160 135 Z' fill='#D09050'/><path d='M230 125 L240 115 L250 125 L240 135 Z' fill='#D09050'/>
+  <text x='200' y='230' text-anchor='middle' fill='#FFF' font-size='16' font-family='sans-serif'>🍪 Печенье</text>
+  <text x='200' y='252' text-anchor='middle' fill='#FFF' font-size='13' font-family='sans-serif' opacity='0.8'>имбирное</text>
+</svg>

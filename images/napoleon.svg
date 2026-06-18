@@ -1,0 +1,6 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'>
+  <rect width='400' height='300' rx='16' fill='#D4A040'/>
+  <rect x='140' y='80' width='120' height='80' rx='6' fill='#B8862A'/><rect x='145' y='100' width='110' height='8' rx='2' fill='#FFF' opacity='0.4'/><rect x='145' y='120' width='110' height='8' rx='2' fill='#FFF' opacity='0.3'/><rect x='145' y='80' width='110' height='8' rx='2' fill='#FFF' opacity='0.5'/>
+  <text x='200' y='230' text-anchor='middle' fill='#FFF' font-size='16' font-family='sans-serif'>🍰 Наполеон</text>
+  <text x='200' y='252' text-anchor='middle' fill='#FFF' font-size='13' font-family='sans-serif' opacity='0.8'>порционный</text>
+</svg>

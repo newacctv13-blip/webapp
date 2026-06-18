@@ -1,0 +1,6 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'>
+  <rect width='400' height='300' rx='16' fill='#F5E6E6'/>
+  <path d='M140 160 Q140 90 200 60 Q260 90 260 160 Z' fill='#F0D0D0'/><path d='M155 150 Q155 100 200 80 Q245 100 245 150 Z' fill='#FFE8E8'/><circle cx='200' cy='110' r='25' fill='#FFF0F0'/>
+  <text x='200' y='230' text-anchor='middle' fill='#FFF' font-size='16' font-family='sans-serif'>🍰 Безе</text>
+  <text x='200' y='252' text-anchor='middle' fill='#FFF' font-size='13' font-family='sans-serif' opacity='0.8'>воздушное</text>
+</svg>

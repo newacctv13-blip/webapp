@@ -1,0 +1,6 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'>
+  <rect width='400' height='300' rx='16' fill='#D2B48C'/>
+  <path d='M150 160 L140 100 Q200 80 260 100 L250 160 Z' fill='#C4A06A'/><circle cx='200' cy='115' r='18' fill='#E85040'/><circle cx='180' cy='120' r='10' fill='#F0D060'/><circle cx='220' cy='118' r='8' fill='#70B040'/>
+  <text x='200' y='230' text-anchor='middle' fill='#FFF' font-size='16' font-family='sans-serif'>🧁 Корзиночка</text>
+  <text x='200' y='252' text-anchor='middle' fill='#FFF' font-size='13' font-family='sans-serif' opacity='0.8'>с фруктами</text>
+</svg>

@@ -1,0 +1,6 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'>
+  <rect width='400' height='300' rx='16' fill='#3E1A0E'/>
+  <rect x='160' y='95' width='80' height='65' rx='4' fill='#2C0E06'/><rect x='165' y='115' width='70' height='20' rx='2' fill='#4A2212'/><circle cx='200' cy='125' r='8' fill='#5C2E18'/>
+  <text x='200' y='230' text-anchor='middle' fill='#FFF' font-size='16' font-family='sans-serif'>🍰 Фондан</text>
+  <text x='200' y='252' text-anchor='middle' fill='#FFF' font-size='13' font-family='sans-serif' opacity='0.8'>шоколадный</text>
+</svg>
