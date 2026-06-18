@@ -232,14 +232,28 @@ export const Cart = {
     msg += `\n${t.total || ''}: ${subtotal} ${cur}\n${t.delivery || ''}: ${delivery} ${cur}\n`;
     msg += `💵 ${t.toPay || ''}: ${total} ${cur}`;
 
-    const s = DATA.settings || {};
-    const workerUrl = s.orderWorkerUrl;
-
+    const workerUrl = this._getWorkerUrl();
     if (workerUrl) {
       this._sendViaWorker(workerUrl, orderData, msg);
     } else {
       this._sendViaFallback(msg);
     }
+  },
+
+  _getWorkerUrl() {
+    const fromStorage = localStorage.getItem('omnom_worker');
+    if (fromStorage) return fromStorage;
+    const params = new URLSearchParams(window.location.search);
+    const fromQuery = params.get('worker');
+    if (fromQuery) {
+      let url = fromQuery;
+      if (!url.startsWith('http')) url = 'https://' + url;
+      if (!url.endsWith('/notify')) url = url.replace(/\/+$/, '') + '/notify';
+      localStorage.setItem('omnom_worker', url);
+      return url;
+    }
+    const s = DATA.settings || {};
+    return s.orderWorkerUrl || '';
   },
 
   _sendViaWorker(workerUrl, orderData, fallbackMsg) {
@@ -266,11 +280,11 @@ export const Cart = {
     const url = s.telegramUsername
       ? `https://t.me/${s.telegramUsername}?text=${encodeURIComponent(msg)}`
       : `https://wa.me/${this.waNumber}?text=${encodeURIComponent(msg)}`;
-    window.open(url, '_blank');
     this.clear();
     UI.closeCart();
     this._emit('submit');
-    this._showToast('Откроется Telegram — отправьте сообщение вручную');
+    this._showToast('Перенаправление в Telegram...');
+    setTimeout(() => { window.location.href = url; }, 600);
   },
 
   _showToast(message) {
