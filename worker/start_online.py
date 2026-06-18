@@ -18,7 +18,7 @@ from urllib.request import Request, urlopen
 from urllib.error import URLError, HTTPError
 
 NGROK_AUTHTOKEN = "3FIgDteWuRUj0QV8WQ99mw4w7VC_2VmE1p1fFm9wKB5VaHwto"
-BOT_TOKEN = "8518399300:AAEX-pbC-s2x7iId8x4-6jKqdBjdBKD9aTs"
+BOT_TOKEN = "8518399300:AAH0zyDqW1TSY079LlBoApI0_buJmlVLSRE"
 ADMIN_CHAT_ID = "330619718"
 REPO = "newacctv13-blip/webapp"
 BRANCH = "gh-pages"

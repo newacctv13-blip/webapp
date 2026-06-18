@@ -21,7 +21,7 @@ if not exist "node_modules" (
 
 :: 3. Запуск Python Telegram handler
 echo [3/4] Запуск Telegram handler...
-start "Omnom Handler" cmd /c "chcp 65001 >nul && cd /d "%~dp0worker" && set BOT_TOKEN=8518399300:AAEX-pbC-s2x7iId8x4-6jKqdBjdBKD9aTs && set ADMIN_CHAT_ID=330619718 && python telegram_handler.py"
+start "Omnom Handler" cmd /c "chcp 65001 >nul && cd /d "%~dp0worker" && set BOT_TOKEN=8518399300:AAH0zyDqW1TSY079LlBoApI0_buJmlVLSRE && set ADMIN_CHAT_ID=330619718 && python telegram_handler.py"
 
 :: 4. Запуск ngrok
 echo [4/4] Запуск ngrok...
