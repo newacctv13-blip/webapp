@@ -234,10 +234,10 @@ const App = {
       ? DATA.products.filter(p => p.category === this.currentCategory)
       : DATA.products;
 
-    const limitByFives = (total) => Math.min(total, Math.max(5, Math.floor(total / 5) * 5));
+    const limitByFives = (total, isCategory) => isCategory ? total : Math.min(total, Math.max(5, Math.floor(total / 5) * 5));
 
-    const renderCardsWithCenterSpread = (items, total) => {
-      const display = items.slice(0, limitByFives(total));
+    const renderCardsWithCenterSpread = (items, total, isCategory) => {
+      const display = items.slice(0, limitByFives(total, isCategory));
       const n = display.length;
       const center = (n - 1) / 2;
       return display.map((p, i) => {
@@ -261,7 +261,7 @@ const App = {
           <span class="cat-name">${catT[this.currentCategory] || ''}</span>
           <span class="cat-count">${products.length} ${unit}</span>
         </div>`;
-      html += renderCardsWithCenterSpread(products, products.length);
+      html += renderCardsWithCenterSpread(products, products.length, !!this.currentCategory);
       html += `</div></div>`;
     } else {
       (DATA.categories || []).forEach(cat => {
