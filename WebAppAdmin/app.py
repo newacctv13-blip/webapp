@@ -159,17 +159,6 @@ def ingest_order():
         db.session.commit()
         logger.info(f"Order #{order.id} ingested via webhook")
 
-        tg_payload = {
-            "chat_id": ADMIN_CHAT_ID,
-            "text": raw_text,
-            "parse_mode": "HTML",
-        }
-        requests.post(
-            f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage",
-            json=tg_payload,
-            timeout=10,
-        )
-
         return Response(
             json.dumps({"ok": True, "order_id": order.id}),
             status=200,

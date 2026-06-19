@@ -16,8 +16,9 @@ import urllib.error
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 
+WORKER_DIR = os.path.dirname(__file__)
 ADMIN_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "WebAppAdmin")
-NGROK_LOG = "ngrok.log"
+BUFFER_FILE = os.path.join(WORKER_DIR, "pending_orders.jsonl")
 
 processes = []
 
@@ -90,10 +91,43 @@ def main():
     )
     time.sleep(3)
 
+    log("Сброс буфера заказов (если админка была недоступна)...")
+    subprocess.run(
+        [sys.executable, "-c", f"""
+import json, os, urllib.request, urllib.error
+bf = {repr(BUFFER_FILE)}
+if os.path.exists(bf):
+    with open(bf, 'r+', encoding='utf-8') as f:
+        lines = f.readlines()
+        f.seek(0)
+        kept = []
+        for line in lines:
+            line = line.strip()
+            if not line: continue
+            try:
+                req = urllib.request.Request('http://127.0.0.1:5000/ingest', data=line.encode(), headers={{"Content-Type": "application/json"}})
+                urllib.request.urlopen(req, timeout=3)
+            except:
+                kept.append(line + '\\n')
+        f.seek(0)
+        f.truncate()
+        f.writelines(kept)
+        print(f'Buffered orders: {{len(lines) - len(kept)}} delivered, {{len(kept)}} remaining')
+"""],
+        capture_output=True, text=True, timeout=10,
+    )
+
+    log("Запуск relay-буфера заказов...")
+    run_process(
+        [sys.executable, "order_relay.py"],
+        "relay", cwd=WORKER_DIR,
+    )
+    time.sleep(2)
+
     cleanup_old_ngrok_tunnels()
-    log("Запуск ngrok...")
+    log("Запуск ngrok -> relay (порт 5002)...")
     ngrok_proc = run_process(
-        ["ngrok", "http", "5000", "--log=stdout"],
+        ["ngrok", "http", "5002", "--log=stdout"],
         "ngrok",
     )
     time.sleep(3)
@@ -101,9 +135,8 @@ def main():
     ngrok_url = wait_for_ngrok(timeout=10)
     if ngrok_url:
         log(f"ngrok: {ngrok_url}")
-        print(f"  -> ADMIN_WEBHOOK_URL: {ngrok_url}/ingest")
-        print(f"  -> Чтобы установить в Cloudflare Worker:")
-        print(f"     https://{ngrok_url.split('://')[1]}/ingest | npx wrangler secret put ADMIN_WEBHOOK_URL")
+        print(f"  -> ADMIN_WEBHOOK_URL: {ngrok_url}")
+        print(f"  (заказы буферизуются, если админка недоступна)")
     else:
         log("⚠ ngrok не запустился. Проверьте, что он установлен.")
 
