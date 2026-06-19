@@ -307,7 +307,7 @@ const App = {
               <span class="qty-value" id="qtyVal-${product.id}">${qty}</span>
               <button class="qty-btn" onclick="Cart.changeQty(${product.id}, 1); App.updateQtyDisplay(${product.id}, Cart.getQty(${product.id}))">+</button>
             </div>
-            <button class="btn-cart ${inCart ? 'added' : ''}" id="btnCart-${product.id}" onclick="Cart.add(${product.id})">
+            <button class="btn-cart ${inCart ? 'added' : ''}" id="btnCart-${product.id}" onclick="Cart.add(${product.id});App.updateQtyDisplay(${product.id},Cart.getQty(${product.id}))">
               ${inCart ? '✓' : t('addToCart')}
             </button>
           </div>
@@ -337,7 +337,7 @@ const App = {
     const inCart = Cart.getQty(product.id) > 0;
     btn.textContent = inCart ? '✓' : t('addToCart');
     btn.className = 'btn-cart' + (inCart ? ' added' : '');
-    btn.onclick = () => { Cart.add(product.id); btn.textContent = '✓'; btn.classList.add('added'); };
+    btn.onclick = () => { Cart.add(product.id); App.updateQtyDisplay(product.id, Cart.getQty(product.id)); btn.textContent = '✓'; btn.classList.add('added'); };
     modal.classList.add('visible');
     document.body.style.overflow = 'hidden';
   },
@@ -363,9 +363,7 @@ const App = {
   updateQtyDisplay(productId, qty) {
     const val = document.getElementById(`qtyVal-${productId}`);
     if (val) val.textContent = qty;
-    if (qty === 0) {
-      this.updateAddButton(productId, false);
-    }
+    this.updateAddButton(productId, qty > 0);
   },
 
   setLang(lang) {

@@ -71,7 +71,6 @@ export const Cart = {
     this.save();
     this.render();
     this._emit('add', productId);
-    UI.openCart();
   },
 
   remove(productId) {
