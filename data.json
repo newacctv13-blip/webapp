@@ -513,8 +513,8 @@
     {
       "id": 25,
       "category": "brownie",
-      "price": 50,
-      "image": "images/brownie_caramel.svg",
+      "price": 40,
+      "image": "images/brownie_caramel.jpg",
       "name": {
         "ru": "Брауни с карамелью",
         "ro": "Brownie cu caramel"
