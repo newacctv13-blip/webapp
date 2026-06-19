@@ -9,16 +9,20 @@ import sys
 import subprocess
 import signal
 import time
+import json
+import urllib.request
+import urllib.error
 
 ADMIN_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "WebAppAdmin")
+NGROK_LOG = "ngrok.log"
 
 processes = []
 
 def log(msg):
     print(f"  [{time.strftime('%H:%M:%S')}] {msg}")
 
-def run_process(args, name):
-    proc = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+def run_process(args, name, cwd=None):
+    proc = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, cwd=cwd)
     processes.append(proc)
     return proc
 
@@ -30,6 +34,32 @@ def cleanup(signum=None, frame=None):
         except Exception:
             pass
     sys.exit(0)
+
+def cleanup_old_ngrok_tunnels():
+    try:
+        r = urllib.request.urlopen("http://127.0.0.1:4040/api/tunnels", timeout=2)
+        data = json.loads(r.read())
+        for t in data.get("tunnels", []):
+            uri = t["uri"]
+            req = urllib.request.Request(f"http://127.0.0.1:4040{uri}", method="DELETE")
+            urllib.request.urlopen(req)
+    except Exception:
+        pass
+
+def wait_for_ngrok(timeout=15):
+    for i in range(timeout):
+        time.sleep(1)
+        try:
+            req = urllib.request.Request("http://127.0.0.1:4040/api/tunnels")
+            r = urllib.request.urlopen(req, timeout=2)
+            data = json.loads(r.read())
+            tunnels = data.get("tunnels", [])
+            if tunnels:
+                url = tunnels[0]["public_url"]
+                return url
+        except (urllib.error.URLError, urllib.error.HTTPError, json.JSONDecodeError, OSError):
+            pass
+    return None
 
 def main():
     signal.signal(signal.SIGINT, cleanup)
@@ -53,9 +83,26 @@ def main():
     log("Запуск Admin Panel...")
     run_process(
         [sys.executable, "app.py"],
-        "admin",
+        "admin", cwd=ADMIN_DIR,
     )
-    time.sleep(2)
+    time.sleep(3)
+
+    cleanup_old_ngrok_tunnels()
+    log("Запуск ngrok...")
+    ngrok_proc = run_process(
+        ["ngrok", "http", "5000", "--log=stdout"],
+        "ngrok",
+    )
+    time.sleep(3)
+
+    ngrok_url = wait_for_ngrok(timeout=10)
+    if ngrok_url:
+        log(f"ngrok: {ngrok_url}")
+        print(f"  -> ADMIN_WEBHOOK_URL: {ngrok_url}/ingest")
+        print(f"  -> Чтобы установить в Cloudflare Worker:")
+        print(f"     https://{ngrok_url.split('://')[1]}/ingest | npx wrangler secret put ADMIN_WEBHOOK_URL")
+    else:
+        log("⚠ ngrok не запустился. Проверьте, что он установлен.")
 
     print()
     log(f"Админка: http://127.0.0.1:5000")
