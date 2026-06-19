@@ -443,8 +443,8 @@
     {
       "id": 20,
       "category": "tubes",
-      "price": 30,
-      "image": "images/trubka_coco.svg",
+      "price": 40,
+      "image": "images/trubka_coco.jpg",
       "name": {
         "ru": "Трубочка кокосовая",
         "ro": "Tubuleț cu cocos"
