@@ -541,8 +541,8 @@
     {
       "id": 27,
       "category": "classic",
-      "price": 42,
-      "image": "images/tiramisu.svg",
+      "price": 50,
+      "image": "images/tiramisu.jpg",
       "name": {
         "ru": "Тирамису порционный",
         "ro": "Tiramisu porționat"
