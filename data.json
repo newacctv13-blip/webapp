@@ -317,8 +317,8 @@
     {
       "id": 16,
       "category": "cakes",
-      "price": 28,
-      "image": "images/korzinochka.svg",
+      "price": 50,
+      "image": "images/korzinochka.jpg",
       "name": {
         "ru": "Корзиночка с фруктами",
         "ro": "Coșuleț cu fructe"
@@ -331,8 +331,8 @@
     {
       "id": 17,
       "category": "cakes",
-      "price": 22,
-      "image": "images/makaron.svg",
+      "price": 30,
+      "image": "images/makaron.jpg",
       "name": {
         "ru": "Макарон миндальный",
         "ro": "Macaron cu migdale"
@@ -346,7 +346,7 @@
       "id": 36,
       "category": "cakes",
       "price": 35,
-      "image": "images/medovik.svg",
+      "image": "images/medovik.jpg",
       "name": {
         "ru": "Медовик порционный",
         "ro": "Medovik porționat"
@@ -374,7 +374,7 @@
       "id": 38,
       "category": "cakes",
       "price": 28,
-      "image": "images/beze.svg",
+      "image": "images/beze.jpg",
       "name": {
         "ru": "Безе воздушное",
         "ro": "Beze aerată"
@@ -387,8 +387,8 @@
     {
       "id": 39,
       "category": "cakes",
-      "price": 45,
-      "image": "images/fondant.svg",
+      "price": 100,
+      "image": "images/fondant.jpg",
       "name": {
         "ru": "Фондан шоколадный",
         "ro": "Fondant de ciocolată"
@@ -401,8 +401,8 @@
     {
       "id": 40,
       "category": "cakes",
-      "price": 32,
-      "image": "images/smetannik.svg",
+      "price": 50,
+      "image": "images/smetannik.jpg",
       "name": {
         "ru": "Сметанник нежный",
         "ro": "Prăjitură cu smântână"
