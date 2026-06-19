@@ -13,6 +13,9 @@ import json
 import urllib.request
 import urllib.error
 
+sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
 ADMIN_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "WebAppAdmin")
 NGROK_LOG = "ngrok.log"
 
@@ -66,9 +69,9 @@ def main():
     signal.signal(signal.SIGTERM, cleanup)
 
     print()
-    print(" ╔══════════════════════════════════════╗")
-    print(" ║   Omnom & SweetMe — LOCAL ADMIN     ║")
-    print(" ╚══════════════════════════════════════╝")
+    print("=" * 40)
+    print("  Omnom & SweetMe — LOCAL ADMIN")
+    print("=" * 40)
     print()
     print(" Cloudflare Worker: https://omnom-notify.newacctv13.workers.dev")
     print(" Заказы обрабатываются автоматически.")
