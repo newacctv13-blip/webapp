@@ -8,3 +8,6 @@ worker/start_handler.cmd
 worker/config.local.json
 
 pending_orders.jsonl
+
+# Database
+WebAppAdmin/database.db
