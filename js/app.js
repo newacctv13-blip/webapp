@@ -235,8 +235,10 @@ const App = {
       ? DATA.products.filter(p => p.category === this.currentCategory)
       : DATA.products;
 
-    const renderCardsWithCenterSpread = (items, max = 5) => {
-      const display = items.slice(0, max);
+    const limitByFives = (total) => Math.min(total, Math.max(5, Math.floor(total / 5) * 5));
+
+    const renderCardsWithCenterSpread = (items, total) => {
+      const display = items.slice(0, limitByFives(total));
       const n = display.length;
       const center = (n - 1) / 2;
       return display.map((p, i) => {
