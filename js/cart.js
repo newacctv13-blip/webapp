@@ -35,14 +35,11 @@ export const Cart = {
   setDeliveryEnabled(enabled) {
     this._deliveryEnabled = enabled;
     localStorage.setItem('omnom_delivery', enabled.toString());
-    const el = document.getElementById('deliveryToggle');
-    if (el) el.value = enabled ? 'delivery' : 'pickup';
     this.render();
   },
 
   toggleDelivery() {
-    const el = document.getElementById('deliveryToggle');
-    this.setDeliveryEnabled(el ? el.value === 'delivery' : false);
+    this.setDeliveryEnabled(!this._deliveryEnabled);
   },
 
   get waNumber() {
@@ -174,11 +171,12 @@ export const Cart = {
           <span>${t.total || ''}</span>
           <span>${subtotal} ${cur}</span>
         </div>
-        <div class="cart-summary-row delivery-toggle-row">
-          <select class="delivery-select" id="deliveryToggle" onchange="Cart.toggleDelivery()">
-            <option value="pickup" ${savedDelivery === 'delivery' ? '' : 'selected'}>${t.pickup || 'Самовывоз'}</option>
-            <option value="delivery" ${savedDelivery === 'delivery' ? 'selected' : ''}>${t.delivery || 'Доставка'}</option>
-          </select>
+        <div class="cart-summary-row delivery-toggle-row" id="deliveryToggleRow">
+          <div class="delivery-toggle" id="deliveryToggle" onclick="Cart.toggleDelivery()">
+            <div class="delivery-toggle-slider ${this._deliveryEnabled ? 'right' : 'left'}"></div>
+            <span class="delivery-toggle-option ${this._deliveryEnabled ? '' : 'active'}">${t.pickup || 'Самовывоз'}</span>
+            <span class="delivery-toggle-option ${this._deliveryEnabled ? 'active' : ''}">${t.delivery || 'Доставка'}</span>
+          </div>
         </div>
         <div class="cart-summary-row">
           <span>${deliveryLabel}</span>
@@ -192,7 +190,7 @@ export const Cart = {
       <div class="cart-form">
         <input type="text" id="orderName" placeholder="${t.namePlaceholder || ''}" value="${savedName}" onfocus="this.style.borderColor=''" />
         <input type="tel" id="orderPhone" placeholder="${t.phonePlaceholder || ''}" value="${savedPhone}" onfocus="this.style.borderColor=''" />
-        <div class="cart-address" id="cartAddress" style="display: ${this._deliveryEnabled ? 'block' : 'none'}">
+        <div class="cart-address ${this._deliveryEnabled ? 'visible' : ''}" id="cartAddress">
           <input type="text" id="orderAddress" placeholder="${t.addressPlaceholder || 'Адрес доставки'}" value="${savedAddress}" />
         </div>
       </div>
