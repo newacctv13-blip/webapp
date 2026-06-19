@@ -633,7 +633,7 @@
         "ro": "Caramele moi lactate cu gust clasic de lapte fiert"
       },
       "category": "iris",
-      "price": 5,
+      "price": 15,
       "image": "images/iriski.jpg"
     },
     {
@@ -647,7 +647,7 @@
         "ro": "Caramele cu sare de mare pentru un gust rafinat dulce-sarat"
       },
       "category": "iris",
-      "price": 5,
+      "price": 15,
       "image": "images/iriski.jpg"
     },
     {
@@ -661,7 +661,7 @@
         "ro": "Caramele fine cu bucatei de arahide prajite"
       },
       "category": "iris",
-      "price": 5,
+      "price": 15,
       "image": "images/iriski.jpg"
     },
     {
@@ -675,7 +675,7 @@
         "ro": "Caramele cu bucatei de aluna si merisoare uscate"
       },
       "category": "iris",
-      "price": 5,
+      "price": 15,
       "image": "images/iriski.jpg"
     },
     {
@@ -689,7 +689,7 @@
         "ro": "Caramele cu gust rafinat de fistic si bucatei de nuca"
       },
       "category": "iris",
-      "price": 5,
+      "price": 15,
       "image": "images/iriski.jpg"
     },
     {
@@ -703,7 +703,7 @@
         "ro": "Caramele cu gust de guma de mestecat — gust din copilarie"
       },
       "category": "iris",
-      "price": 5,
+      "price": 15,
       "image": "images/iriski.jpg"
     },
     {
@@ -717,7 +717,7 @@
         "ro": "Caramele neobisnuite cu popcorn crocant in interior"
       },
       "category": "iris",
-      "price": 5,
+      "price": 15,
       "image": "images/iriski.jpg"
     },
     {
@@ -731,7 +731,7 @@
         "ro": "Caramele in glazura de ciocolata cu umplutura fina de lapte"
       },
       "category": "iris",
-      "price": 5,
+      "price": 15,
       "image": "images/iriski.jpg"
     },
     {
@@ -745,7 +745,7 @@
         "ro": "Caramele cu aroma de cappuccino si nota fina de lapte"
       },
       "category": "iris",
-      "price": 5,
+      "price": 15,
       "image": "images/iriski.jpg"
     },
     {
@@ -759,7 +759,7 @@
         "ro": "Caramele cu gust fin de lichior Belis — pentru adulti"
       },
       "category": "iris",
-      "price": 5,
+      "price": 15,
       "image": "images/iriski.jpg"
     }
   ],
