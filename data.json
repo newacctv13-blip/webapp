@@ -499,8 +499,8 @@
     {
       "id": 24,
       "category": "brownie",
-      "price": 48,
-      "image": "images/brownie_nuts.svg",
+      "price": 30,
+      "image": "images/brownie_nuts.jpg",
       "name": {
         "ru": "Брауни с орехами",
         "ro": "Brownie cu nuci"
