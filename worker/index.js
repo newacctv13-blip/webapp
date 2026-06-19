@@ -1,5 +1,5 @@
 /**
- * Omnom & SweetMe — Telegram Order Notification Worker
+ * SweetMe & Omnom — Telegram Order Notification Worker
  * Cloudflare Worker: принимает данные заказа и отправляет уведомление в Telegram.
  * BOT_TOKEN и ADMIN_CHAT_ID хранятся как зашифрованные секреты Cloudflare — клиент их никогда не видит.
  */

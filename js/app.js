@@ -181,16 +181,17 @@ const App = {
     document.getElementById('header').innerHTML = `
       <div class="hero">
         <div class="hero-logo">
-          <a href="index.html"><img src="images/logo.svg" alt="Omnom & SweetMe" class="hero-logo-img" /></a>
+          <a href="index.html"><img src="images/logo.svg" alt="SweetMe & Omnom" class="hero-logo-img" /></a>
         </div>
         <div class="hero-content">
           <div class="hero-top">
             <div class="hero-info">
-              <h1 class="hero-title">Omnom & SweetMe</h1>
+              <h1 class="hero-title">SweetMe & Omnom</h1>
               <p class="hero-subtitle">${t('subtitle')}</p>
             </div>
             <div class="hero-actions">
-              <a class="hero-visit-btn" href="visit.html">${t('whereToFind')}</a>
+              <button class="hero-visit-btn" onclick="document.getElementById('productsContainer').scrollIntoView({behavior:'smooth'})">📋 ${t('menu')}</button>
+              <a class="hero-visit-btn" href="visit.html">📍 ${t('whereToFind')}</a>
               <button class="cart-toggle-header" onclick="UI.openCart()">
                 🛒 ${t('cart')} <span class="cart-badge" id="cartBadgeHeader">0</span>
               </button>

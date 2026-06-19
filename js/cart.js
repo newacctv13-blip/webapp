@@ -35,11 +35,14 @@ export const Cart = {
   setDeliveryEnabled(enabled) {
     this._deliveryEnabled = enabled;
     localStorage.setItem('omnom_delivery', enabled.toString());
+    const el = document.getElementById('deliveryToggle');
+    if (el) el.value = enabled ? 'delivery' : 'pickup';
     this.render();
   },
 
   toggleDelivery() {
-    this.setDeliveryEnabled(!this._deliveryEnabled);
+    const el = document.getElementById('deliveryToggle');
+    this.setDeliveryEnabled(el ? el.value === 'delivery' : false);
   },
 
   get waNumber() {
@@ -128,6 +131,8 @@ export const Cart = {
     const savedName = document.getElementById('orderName')?.value || '';
     const savedPhone = document.getElementById('orderPhone')?.value || '';
     const savedAddress = document.getElementById('orderAddress')?.value || '';
+    const savedDeliveryEl = document.getElementById('deliveryToggle')?.value;
+    const savedDelivery = savedDeliveryEl || (this._deliveryEnabled ? 'delivery' : 'pickup');
 
     if (cartBadge) cartBadge.textContent = count;
     if (cartBadgeHeader) cartBadgeHeader.textContent = count;
@@ -171,10 +176,10 @@ export const Cart = {
           <span>${subtotal} ${cur}</span>
         </div>
         <div class="cart-summary-row delivery-toggle-row">
-          <label class="delivery-toggle">
-            <input type="checkbox" id="deliveryToggle" ${this._deliveryEnabled ? 'checked' : ''} onchange="Cart.toggleDelivery()" />
-            <span class="toggle-label">${t.delivery || 'Доставка'}</span>
-          </label>
+          <select class="delivery-select" id="deliveryToggle" onchange="Cart.toggleDelivery()">
+            <option value="pickup" ${savedDelivery === 'delivery' ? '' : 'selected'}>${t.pickup || 'Самовывоз'}</option>
+            <option value="delivery" ${savedDelivery === 'delivery' ? 'selected' : ''}>${t.delivery || 'Доставка'}</option>
+          </select>
         </div>
         <div class="cart-summary-row">
           <span>${deliveryLabel}</span>
