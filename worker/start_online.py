@@ -13,6 +13,7 @@ import json
 import urllib.request
 import urllib.error
 
+
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 
@@ -21,6 +22,26 @@ ADMIN_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "WebAppAdmi
 BUFFER_FILE = os.path.join(WORKER_DIR, "pending_orders.jsonl")
 
 processes = []
+
+def kill_processes_on_ports():
+    ports = [5000, 5002, 4040]
+    for port in ports:
+        try:
+            r = subprocess.run(
+                ["netstat", "-ano"],
+                capture_output=True, text=True, timeout=5,
+            )
+            for line in r.stdout.splitlines():
+                if f":{port} " in line and "LISTENING" in line:
+                    pid = line.strip().split()[-1]
+                    try:
+                        subprocess.run(["taskkill", "/F", "/PID", pid], capture_output=True, timeout=3)
+                        print(f"  убит процесс на порту {port} (PID {pid})")
+                    except Exception:
+                        pass
+        except Exception:
+            pass
+    time.sleep(1)
 
 def log(msg):
     print(f"  [{time.strftime('%H:%M:%S')}] {msg}")
@@ -106,6 +127,10 @@ def main():
     print("=" * 40)
     print("  Omnom & SweetMe — LOCAL ADMIN")
     print("=" * 40)
+    print()
+    log("Очистка старых процессов...")
+    kill_processes_on_ports()
+
     print()
     print(" Cloudflare Worker: https://omnom-notify.newacctv13.workers.dev")
     print(" Заказы обрабатываются автоматически.")
