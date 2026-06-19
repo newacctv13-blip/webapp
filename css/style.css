@@ -674,7 +674,21 @@ a:hover { text-decoration: underline; }
 
 @keyframes fadeSlideUp {
   from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  to {   opacity: 1;
+  transform: translateY(0);
+}
+.cart-address input {
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-family: var(--font);
+  outline: none;
+  background: var(--bg);
+  color: var(--primary);
+  width: 100%;
+  box-sizing: border-box;
+}
 }
 
 .section + .section {
@@ -1151,27 +1165,58 @@ a:hover { text-decoration: underline; }
 
 .delivery-toggle-row { align-items: center; gap: 10px; }
 
-.delivery-select {
+.delivery-toggle {
+  position: relative;
+  display: flex;
   width: 100%;
-  padding: 10px 14px;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  background: var(--bg-primary);
-  color: var(--primary);
+  background: var(--bg, #f0f0f0);
+  border-radius: 12px;
+  padding: 4px;
+  cursor: pointer;
+  user-select: none;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.delivery-toggle-slider {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  width: calc(50% - 4px);
+  background: var(--accent, #d4a373);
+  border-radius: 10px;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
+}
+.delivery-toggle-slider.left { transform: translateX(0); }
+.delivery-toggle-slider.right { transform: translateX(calc(100% + 4px)); }
+.delivery-toggle-option {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  text-align: center;
+  padding: 10px 0;
   font-size: 14px;
   font-family: var(--font);
-  cursor: pointer;
-  outline: none;
-  transition: border-color 0.2s ease;
+  font-weight: 500;
+  color: var(--text-muted, #999);
+  transition: color 0.3s ease;
 }
-.delivery-select:focus {
-  border-color: var(--accent);
-}
+.delivery-toggle-option.active { color: #fff; }
 
 .cart-address {
   overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
+.cart-address.visible {
+  max-height: 60px;
+  opacity: 1;
+  transform: translateY(0);
+}
 .cart-address input {
   padding: 12px 14px;
   border: 1px solid var(--border);
