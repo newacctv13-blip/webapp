@@ -331,8 +331,8 @@
     {
       "id": 17,
       "category": "cakes",
-      "price": 22,
-      "image": "images/makaron.svg",
+      "price": 30,
+      "image": "images/makaron.jpg",
       "name": {
         "ru": "Макарон миндальный",
         "ro": "Macaron cu migdale"
