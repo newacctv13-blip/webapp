@@ -676,7 +676,7 @@
       },
       "category": "iris",
       "price": 15,
-      "image": "images/iriski.jpg"
+      "image": "images/iris_funduk_klukva.jpg"
     },
     {
       "id": 45,
@@ -732,7 +732,7 @@
       },
       "category": "iris",
       "price": 15,
-      "image": "images/iriski.jpg"
+      "image": "images/iris_choco.jpg"
     },
     {
       "id": 49,
@@ -746,7 +746,7 @@
       },
       "category": "iris",
       "price": 15,
-      "image": "images/iriski.jpg"
+      "image": "images/iris_cappuccino.jpg"
     },
     {
       "id": 50,
@@ -760,7 +760,7 @@
       },
       "category": "iris",
       "price": 15,
-      "image": "images/iriski.jpg"
+      "image": "images/iris_belis.jpg"
     }
   ],
   "locations": [
