@@ -1148,21 +1148,21 @@ a:hover { text-decoration: underline; }
 
 .delivery-toggle-row { align-items: center; gap: 10px; }
 
-.delivery-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+.delivery-select {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg-primary);
+  color: var(--primary);
+  font-size: 14px;
+  font-family: var(--font);
   cursor: pointer;
-  font-size: 13px;
-  color: var(--secondary);
-  user-select: none;
+  outline: none;
+  transition: border-color 0.2s ease;
 }
-
-.delivery-toggle input {
-  width: 18px;
-  height: 18px;
-  accent-color: var(--accent);
-  cursor: pointer;
+.delivery-select:focus {
+  border-color: var(--accent);
 }
 
 .cart-address {
