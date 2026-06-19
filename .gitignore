@@ -1,5 +1,10 @@
-﻿@
 node_modules/
-worker/
-worker/config.local.json
+dist/
+.DS_Store
+*.log
+
+# Local config with secrets
 worker/start_handler.cmd
+worker/config.local.json
+
+pending_orders.jsonl

@@ -36,6 +36,7 @@
       "gram": "гр",
       "namePlaceholder": "Ваше имя",
       "phonePlaceholder": "Ваш телефон",
+      "addressPlaceholder": "Адрес доставки",
       "orderReady": "Ваш заказ:",
       "whereToFind": "Где нас найти",
       "categories": {
@@ -46,7 +47,7 @@
         "brownie": "Брауни",
         "classic": "Классика",
         "cookies": "Печенье",
-        "candies": "Конфеты"
+        "iris": "Ириски"
       }
     },
     "ro": {
@@ -71,6 +72,7 @@
       "gram": "g",
       "namePlaceholder": "Numele dvs.",
       "phonePlaceholder": "Telefonul dvs.",
+      "addressPlaceholder": "Adresa de livrare",
       "orderReady": "Comanda dvs.:",
       "whereToFind": "Unde ne găsiți",
       "categories": {
@@ -81,7 +83,7 @@
         "brownie": "Brownie",
         "classic": "Clasice",
         "cookies": "Fursecuri",
-        "candies": "Bomboane"
+        "iris": "Caramele"
       }
     }
   },
@@ -111,8 +113,8 @@
       "icon": "🍪"
     },
     {
-      "id": "candies",
-      "icon": "🍬"
+      "id": "iris",
+      "icon": "🍯"
     }
   ],
   "products": [
@@ -271,23 +273,9 @@
       }
     },
     {
-      "id": 12,
-      "category": "candies",
-      "price": 10,
-      "image": "images/iriski.jpg",
-      "name": {
-        "ru": "Ириски разных вкусов",
-        "ro": "Caramele cu diferite arome"
-      },
-      "desc": {
-        "ru": "Мягкие молочные ириски: ванильные, шоколадные, кофейные",
-        "ro": "Caramele moi lactate: vanilie, ciocolată, cafea"
-      }
-    },
-    {
       "id": 13,
-      "category": "candies",
-      "price": 15,
+      "category": "cookies",
+      "price": 75,
       "image": "images/gribochki.jpg",
       "name": {
         "ru": "Грибочки",
@@ -635,60 +623,158 @@
       }
     },
     {
-      "id": 33,
-      "category": "candies",
-      "price": 18,
-      "image": "images/truffle.svg",
+      "id": 41,
       "name": {
-        "ru": "Трюфель шоколадный",
-        "ro": "Trufe de ciocolată"
+        "ru": "Классические",
+        "ro": "Clasice"
       },
       "desc": {
-        "ru": "Изысканный шоколадный трюфель с какао-посыпкой",
-        "ro": "Trufe fine de ciocolată cu pudră de cacao"
-      }
+        "ru": "Мягкие молочные ириски с классическим вкусом топленого молока",
+        "ro": "Caramele moi lactate cu gust clasic de lapte fiert"
+      },
+      "category": "iris",
+      "price": 5,
+      "image": "images/iriski.jpg"
     },
     {
-      "id": 34,
-      "category": "candies",
-      "price": 12,
-      "image": "images/caramel.svg",
+      "id": 42,
       "name": {
-        "ru": "Карамель сливочная",
-        "ro": "Caramel cremos"
+        "ru": "С солью",
+        "ro": "Cu sare"
       },
       "desc": {
-        "ru": "Мягкая сливочная карамель ручной работы",
-        "ro": "Caramel moale cremos lucrat manual"
-      }
+        "ru": "Ириски с морской солью для изысканного сладко-соленого вкуса",
+        "ro": "Caramele cu sare de mare pentru un gust rafinat dulce-sarat"
+      },
+      "category": "iris",
+      "price": 5,
+      "image": "images/iriski.jpg"
     },
     {
-      "id": 35,
-      "category": "candies",
-      "price": 14,
-      "image": "images/marmelad.svg",
+      "id": 43,
       "name": {
-        "ru": "Мармелад жевательный",
-        "ro": "Marmeladă de mestecat"
+        "ru": "С арахисом",
+        "ro": "Cu arahide"
       },
       "desc": {
-        "ru": "Фруктовый жевательный мармелад разных вкусов",
-        "ro": "Marmeladă de fructe de mestecat cu diverse arome"
-      }
+        "ru": "Нежные ириски с кусочками жареного арахиса",
+        "ro": "Caramele fine cu bucatei de arahide prajite"
+      },
+      "category": "iris",
+      "price": 5,
+      "image": "images/iriski.jpg"
+    },
+    {
+      "id": 44,
+      "name": {
+        "ru": "С фундуком и клюквой",
+        "ro": "Cu alune si merisoare"
+      },
+      "desc": {
+        "ru": "Ириски с кусочками фундука и вяленой клюквой",
+        "ro": "Caramele cu bucatei de aluna si merisoare uscate"
+      },
+      "category": "iris",
+      "price": 5,
+      "image": "images/iriski.jpg"
+    },
+    {
+      "id": 45,
+      "name": {
+        "ru": "С фисташкой",
+        "ro": "Cu fistic"
+      },
+      "desc": {
+        "ru": "Ириски с изысканным фисташковым вкусом и кусочками ореха",
+        "ro": "Caramele cu gust rafinat de fistic si bucatei de nuca"
+      },
+      "category": "iris",
+      "price": 5,
+      "image": "images/iriski.jpg"
+    },
+    {
+      "id": 46,
+      "name": {
+        "ru": "BubbleGum",
+        "ro": "BubbleGum"
+      },
+      "desc": {
+        "ru": "Ириски со вкусом жевательной резинки — вкус из детства",
+        "ro": "Caramele cu gust de guma de mestecat — gust din copilarie"
+      },
+      "category": "iris",
+      "price": 5,
+      "image": "images/iriski.jpg"
+    },
+    {
+      "id": 47,
+      "name": {
+        "ru": "С попкорном",
+        "ro": "Cu popcorn"
+      },
+      "desc": {
+        "ru": "Необычные ириски с хрустящим попкорном внутри",
+        "ro": "Caramele neobisnuite cu popcorn crocant in interior"
+      },
+      "category": "iris",
+      "price": 5,
+      "image": "images/iriski.jpg"
+    },
+    {
+      "id": 48,
+      "name": {
+        "ru": "С шоколадом",
+        "ro": "Cu ciocolata"
+      },
+      "desc": {
+        "ru": "Ириски в шоколадной глазури с нежной молочной начинкой",
+        "ro": "Caramele in glazura de ciocolata cu umplutura fina de lapte"
+      },
+      "category": "iris",
+      "price": 5,
+      "image": "images/iriski.jpg"
+    },
+    {
+      "id": 49,
+      "name": {
+        "ru": "Капучино",
+        "ro": "Cappuccino"
+      },
+      "desc": {
+        "ru": "Кофейные ириски с ароматом капучино и мягкой молочной ноткой",
+        "ro": "Caramele cu aroma de cappuccino si nota fina de lapte"
+      },
+      "category": "iris",
+      "price": 5,
+      "image": "images/iriski.jpg"
+    },
+    {
+      "id": 50,
+      "name": {
+        "ru": "С Belis",
+        "ro": "Cu Belis"
+      },
+      "desc": {
+        "ru": "Ириски с нежным вкусом ликёра Belis — для взрослых",
+        "ro": "Caramele cu gust fin de lichior Belis — pentru adulti"
+      },
+      "category": "iris",
+      "price": 5,
+      "image": "images/iriski.jpg"
     }
   ],
   "locations": [
     {
       "id": "yardsale",
-      "icon": "\ud83d\uded2",
+      "icon": "🛒",
       "image": "images/yardsale.jpg",
       "name": {
         "ru": "YardSale Market",
-        "ro": "T\u00e2rgul YardSale"
+        "ro": "Târgul YardSale"
       },
       "desc": {
-        "ru": "\u0414\u0438\u0437\u0430\u0439\u043d-\u043c\u0430\u0440\u043a\u0435\u0442 \u0432 \u0446\u0435\u043d\u0442\u0440\u0435 \u041a\u0438\u0448\u0438\u043d\u0451\u0432\u0430. \u0420\u0435\u0433\u0443\u043b\u044f\u0440\u043d\u044b\u0435 \u044f\u0440\u043c\u0430\u0440\u043a\u0438 \u0432\u043e \u0434\u0432\u043e\u0440\u0435 Teatrul Gastronomic (\u0443\u043b. \u0428\u0442\u0435\u0444\u0430\u043d \u0447\u0435\u043b \u041c\u0430\u0440\u0435, 103). \u0412\u0438\u043d\u0442\u0430\u0436, \u0445\u0435\u043d\u0434\u043c\u0435\u0439\u0434, \u0434\u043e\u043c\u0430\u0448\u043d\u0438\u0435 \u0434\u0435\u0441\u0435\u0440\u0442\u044b, \u0436\u0438\u0432\u0430\u044f \u043c\u0443\u0437\u044b\u043a\u0430. \u0412\u0445\u043e\u0434 \u0441\u0432\u043e\u0431\u043e\u0434\u043d\u044b\u0439.",
-        "ro": "T\u00e2rg de design \u00een centrul Chi\u0219in\u0103ului, \u00een curtea Teatrului Gastronomic (str. \u0218tefan cel Mare, 103). Vintage, handmade, deserturi de cas\u0103, muzic\u0103 live. Intrarea liber\u0103."
+        "ru": "Дизайн-маркет в центре Кишинёва. Регулярные ярмарки во дворе Teatrul Gastronomic (ул. Штефан чел Маре, 103). Винтаж, хендмейд, домашние десерты, живая музыка. Вход свободный.",
+        "ro": "Târg de design în centrul Chișinăului, în curtea Teatrului Gastronomic (str. Ștefan cel Mare, 103). Vintage, handmade, deserturi de casă, muzică live. Intrarea liberă."
       },
       "url": "https://www.instagram.com/yardsale_md/",
       "urlLabel": {
@@ -698,15 +784,15 @@
     },
     {
       "id": "ecolocal",
-      "icon": "\ud83c\udf3f",
+      "icon": "🌿",
       "image": "images/ecolocal.jpg",
       "name": {
         "ru": "EcoLocal Farmers Market",
         "ro": "EcoLocal Farmers Market"
       },
       "desc": {
-        "ru": "\u0424\u0435\u0440\u043c\u0435\u0440\u0441\u043a\u0430\u044f \u044f\u0440\u043c\u0430\u0440\u043a\u0430 \u044d\u043a\u043e\u043f\u0440\u043e\u0434\u0443\u043a\u0442\u043e\u0432. \u041a\u0430\u0436\u0434\u0443\u044e \u0441\u0443\u0431\u0431\u043e\u0442\u0443 9:00\u201313:00, \u0441\u0435\u043a\u0442\u043e\u0440 \u0411\u0443\u044e\u043a\u0430\u043d\u044c (bd. \u0218tefan cel Mare, 202, \u0443 \u0431\u0438\u0437\u043d\u0435\u0441-\u0446\u0435\u043d\u0442\u0440\u0430 Kentford). \u0414\u043e\u043c\u0430\u0448\u043d\u0438\u0435 \u0441\u044b\u0440\u044b, \u043e\u0440\u0433\u0430\u043d\u0438\u043a\u0430, \u043c\u0451\u0434, \u0441\u0443\u0445\u043e\u0444\u0440\u0443\u043a\u0442\u044b \u0438 \u043d\u0430\u0448\u0438 \u0434\u0435\u0441\u0435\u0440\u0442\u044b.",
-        "ro": "T\u00e2rg fermier de produse eco. S\u00e2mb\u0103ta 9:00\u201313:00, sectorul Buiucani (bd. \u0218tefan cel Mare, 202, l\u00e2ng\u0103 centrul de afaceri Kentford). Br\u00e2nzeturi de cas\u0103, organice, miere, fructe uscate \u0219i deserturile noastre."
+        "ru": "Фермерская ярмарка экопродуктов. Каждую субботу 9:00–13:00, сектор Буюкань (bd. Ștefan cel Mare, 202, у бизнес-центра Kentford). Домашние сыры, органика, мёд, сухофрукты и наши десерты.",
+        "ro": "Târg fermier de produse eco. Sâmbăta 9:00–13:00, sectorul Buiucani (bd. Ștefan cel Mare, 202, lângă centrul de afaceri Kentford). Brânzeturi de casă, organice, miere, fructe uscate și deserturile noastre."
       },
       "url": "https://www.instagram.com/ecolocalmoldova/",
       "urlLabel": {
@@ -716,20 +802,20 @@
     },
     {
       "id": "amica",
-      "icon": "\u2615",
+      "icon": "☕",
       "image": "",
       "name": {
         "ru": "Amica Cafe",
         "ro": "Amica Cafe"
       },
       "desc": {
-        "ru": "\u0423\u044e\u0442\u043d\u043e\u0435 \u043a\u0430\u0444\u0435 \u0432 \u041a\u0440\u0438\u043a\u043e\u0432\u043e, \u0440\u044f\u0434\u043e\u043c \u0441 \u0443\u043d\u0438\u0432\u0435\u0440\u043c\u0430\u0433\u043e\u043c Linella. \u0417\u0434\u0435\u0441\u044c \u043c\u043e\u0436\u043d\u043e \u043f\u043e\u043f\u0440\u043e\u0431\u043e\u0432\u0430\u0442\u044c \u043d\u0430\u0448\u0438 \u0434\u0435\u0441\u0435\u0440\u0442\u044b \u0432 \u0442\u0451\u043f\u043b\u043e\u0439 \u0430\u0442\u043c\u043e\u0441\u0444\u0435\u0440\u0435. \u0421\u043b\u0435\u0434\u0438\u0442\u0435 \u0437\u0430 \u043e\u0442\u043a\u0440\u044b\u0442\u0438\u0435\u043c!",
-        "ro": "Cafenea confortabil\u0103 \u00een Cricova, l\u00e2ng\u0103 supermarketul Linella. Deserturile noastre \u00eentr-o atmosfer\u0103 pl\u0103cut\u0103. Urmeaz\u0103 deschiderea!"
+        "ru": "Уютное кафе в Криково, рядом с универмагом Linella. Здесь можно попробовать наши десерты в тёплой атмосфере. Следите за открытием!",
+        "ro": "Cafenea confortabilă în Cricova, lângă supermarketul Linella. Deserturile noastre într-o atmosferă plăcută. Urmează deschiderea!"
       },
       "url": "https://maps.app.goo.gl/mKNEnrGAiXf2GWgf7",
       "urlLabel": {
-        "ru": "\u041e\u0442\u043a\u0440\u044b\u0442\u044c \u043d\u0430 \u043a\u0430\u0440\u0442\u0435",
-        "ro": "Deschide pe hart\u0103"
+        "ru": "Открыть на карте",
+        "ro": "Deschide pe hartă"
       }
     }
   ]
