@@ -6,3 +6,5 @@ dist/
 # Local config with secrets
 worker/start_handler.cmd
 worker/config.local.json
+
+pending_orders.jsonl
