@@ -80,6 +80,21 @@ async function sendTelegram(env, message) {
   return res.json();
 }
 
+async function forwardToAdmin(env, order) {
+  if (!env.ADMIN_WEBHOOK_URL) return;
+  try {
+    await fetch(env.ADMIN_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(order),
+      signal: AbortSignal.timeout(3000),
+    });
+    console.log('Order forwarded to admin webhook');
+  } catch (err) {
+    console.warn('Admin webhook unreachable:', err.message);
+  }
+}
+
 export default {
   async fetch(request, env) {
     const origin = request.headers.get('Origin') || '';
@@ -131,6 +146,7 @@ export default {
     try {
       const message = formatOrderMessage(order);
       await sendTelegram(env, message);
+      forwardToAdmin(env, order);
 
       return new Response(JSON.stringify({ ok: true }), {
         status: 200,

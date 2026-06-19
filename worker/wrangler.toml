@@ -7,3 +7,7 @@ account_id = "9ed31ede11a0b02abe3f1d271fc621db"
 #   wrangler secret put BOT_TOKEN
 #   wrangler secret put ADMIN_CHAT_ID
 # Они НЕ хранятся в этом файле!
+#
+# ADMIN_WEBHOOK_URL — опционально: URL для дублирования заказов в админку
+#   wrangler secret put ADMIN_WEBHOOK_URL
+# Пример: https://your-server.com/ingest

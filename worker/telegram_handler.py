@@ -17,6 +17,7 @@ import re
 BOT_TOKEN = os.environ.get('BOT_TOKEN')
 ADMIN_CHAT_ID = os.environ.get('ADMIN_CHAT_ID')
 PORT = int(os.environ.get('PORT', 8765))
+ADMIN_INGEST_URL = os.environ.get('ADMIN_INGEST_URL', 'http://127.0.0.1:5000/ingest')
 
 ALLOWED_ORIGINS = [
     'http://localhost:5173',
@@ -104,6 +105,21 @@ class OrderHandler(BaseHTTPRequestHandler):
         self._send_cors(origin)
         self.end_headers()
 
+    def _forward_to_admin(self, order):
+        try:
+            payload = json.dumps(order).encode()
+            req = Request(
+                ADMIN_INGEST_URL,
+                data=payload,
+                headers={'Content-Type': 'application/json'},
+            )
+            urlopen(req, timeout=3)
+            print(f'  -> заказ от {order.get("name")} передан в админку')
+            return True
+        except Exception as e:
+            print(f'  -> админка недоступна: {e}')
+            return False
+
     def do_POST(self):
         origin = self.headers.get('Origin', '')
         client = self.client_address[0]
@@ -138,6 +154,8 @@ class OrderHandler(BaseHTTPRequestHandler):
                 {'error': 'Missing required fields'}, 400, origin
             )
             return
+
+        self._forward_to_admin(order)
 
         try:
             message = format_order_message(order)

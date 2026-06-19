@@ -1,0 +1,42 @@
+body {
+  background: #f5f6fa;
+  font-size: 0.9rem;
+}
+
+.table th {
+  white-space: nowrap;
+}
+
+.order-row td {
+  vertical-align: middle;
+}
+
+.order-row.status-cancelled {
+  opacity: 0.65;
+}
+
+.order-row.status-cancelled td {
+  text-decoration: line-through;
+}
+
+.badge {
+  font-weight: 500;
+  padding: 0.4em 0.7em;
+}
+
+.alert {
+  border-left: 4px solid;
+}
+.alert-success { border-left-color: #198754; }
+.alert-danger { border-left-color: #dc3545; }
+.alert-warning { border-left-color: #ffc107; }
+
+@media (max-width: 768px) {
+  .table {
+    font-size: 0.8rem;
+  }
+  .container-fluid {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+}

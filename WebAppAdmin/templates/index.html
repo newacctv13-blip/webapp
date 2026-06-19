@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block title %}Заказы{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+  <h4 class="mb-0"><i class="bi bi-list-ul"></i> Заказы</h4>
+  <div class="d-flex gap-2 flex-wrap">
+    <a href="{{ url_for('index') }}" class="btn btn-outline-secondary btn-sm {% if not current_status %}active{% endif %}">Все</a>
+    {% for key in status_order %}
+      <a href="{{ url_for('index', status=key, search=search) }}"
+         class="btn btn-outline-{{ 'secondary' if key != 'cancelled' else 'danger' }} btn-sm {% if current_status == key %}active{% endif %}">
+        {{ statuses[key] }}
+      </a>
+    {% endfor %}
+    <a href="{{ url_for('index', status='cancelled', search=search) }}"
+       class="btn btn-outline-danger btn-sm {% if current_status == 'cancelled' %}active{% endif %}">
+      Отменённые
+    </a>
+  </div>
+</div>
+
+<form method="GET" action="{{ url_for('index') }}" class="row g-2 mb-3">
+  <div class="col-auto">
+    <input type="text" name="search" class="form-control form-control-sm" placeholder="Поиск (имя, телефон, город...)" value="{{ search }}">
+  </div>
+  <div class="col-auto">
+    <button type="submit" class="btn btn-sm btn-outline-primary"><i class="bi bi-search"></i></button>
+  </div>
+  {% if current_status %}
+    <div class="col-auto">
+      <input type="hidden" name="status" value="{{ current_status }}">
+    </div>
+  {% endif %}
+</form>
+
+{% if orders %}
+<div class="table-responsive">
+  <table class="table table-hover align-middle">
+    <thead class="table-dark">
+      <tr>
+        <th>#</th>
+        <th>Имя</th>
+        <th>Телефон</th>
+        <th>Город</th>
+        <th>Состав заказа</th>
+        <th>Сумма</th>
+        <th>Доставка</th>
+        <th>К оплате</th>
+        <th>Дата/Время</th>
+        <th>Статус</th>
+        <th>Действия</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for order in orders %}
+      <tr class="order-row status-{{ order.status }}">
+        <td>{{ order.id }}</td>
+        <td>{{ order.customer_name or '—' }}</td>
+        <td>{{ order.phone or '—' }}</td>
+        <td>{{ order.city or '—' }}</td>
+        <td class="text-wrap" style="max-width: 220px;">{{ order.items or '—' }}</td>
+        <td>{{ order.total or '—' }}</td>
+        <td>{{ order.delivery or '—' }}</td>
+        <td><strong>{{ order.to_pay or '—' }}</strong></td>
+        <td class="small">{{ order.order_datetime or (order.created_at.strftime('%d.%m.%Y %H:%M') if order.created_at else '—') }}</td>
+        <td>
+          {% if order.status == 'cancelled' %}
+            <span class="badge bg-danger">Отменён</span>
+          {% else %}
+            <span class="badge bg-{{ 'success' if order.status == 'delivered' else 'primary' if order.status == 'processing' else 'info' if order.status == 'confirmed' else 'secondary' if order.status == 'accepted' else 'warning' }}">
+              {{ statuses.get(order.status, order.status) }}
+            </span>
+          {% endif %}
+        </td>
+        <td>
+          {% if order.status != 'cancelled' %}
+          <div class="d-flex gap-1 flex-wrap">
+            <form method="POST" action="{{ url_for('update_status', order_id=order.id) }}" class="d-inline">
+              <select name="status" class="form-select form-select-sm d-inline" style="width:auto; display:inline-block!important;" onchange="this.form.submit()">
+                <option value="">Сменить...</option>
+                {% for key in status_order %}
+                  {% if key != order.status %}
+                    <option value="{{ key }}">{{ statuses[key] }}</option>
+                  {% endif %}
+                {% endfor %}
+              </select>
+            </form>
+            <form method="POST" action="{{ url_for('cancel_order', order_id=order.id) }}" class="d-inline" onsubmit="return confirm('Отменить заказ #{{ order.id }}?')">
+              <button type="submit" class="btn btn-outline-danger btn-sm"><i class="bi bi-x-circle"></i></button>
+            </form>
+          </div>
+          {% else %}
+            <span class="text-muted small">—</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<div class="text-center py-5 text-muted">
+  <i class="bi bi-inbox display-4 d-block mb-2"></i>
+  <p>Заказов пока нет. Ожидаю сообщения от Telegram...</p>
+</div>
+{% endif %}
+{% endblock %}
