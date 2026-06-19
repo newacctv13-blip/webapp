@@ -38,6 +38,7 @@
   <table class="table table-hover align-middle">
     <thead class="table-dark">
       <tr>
+        <th style="width:32px"></th>
         <th>#</th>
         <th>Имя</th>
         <th>Телефон</th>
@@ -54,18 +55,20 @@
     <tbody>
       {% for order in orders %}
       <tr class="order-row status-{{ order.status }}">
+        <td class="text-center">
+          {% set items_list = (order.items or '').split(', ') %}
+          {% if items_list|length > 1 %}
+            <a href="#" class="items-toggle" data-id="{{ order.id }}" title="Раскрыть состав">
+              <i class="bi bi-chevron-right items-icon" id="icon-{{ order.id }}"></i>
+            </a>
+          {% endif %}
+        </td>
         <td>{{ order.id }}</td>
         <td>{{ order.customer_name or '—' }}</td>
         <td>{{ order.phone or '—' }}</td>
         <td>{{ order.city or '—' }}</td>
         <td class="text-wrap" style="max-width: 220px;">
-          {% set items_list = (order.items or '').split(', ') %}
-          <span class="items-summary" data-target="items-{{ order.id }}">
-            <span class="items-first">{{ items_list[0] }}</span>
-            {% if items_list|length > 1 %}
-              <a href="#" class="items-toggle" data-id="{{ order.id }}">и ещё {{ items_list|length - 1 }}</a>
-            {% endif %}
-          </span>
+          <span class="items-first">{{ items_list[0] if items_list else '—' }}</span>
           <ul class="items-detail d-none" id="items-{{ order.id }}">
             {% for item in items_list %}
               <li>{{ item }}</li>
@@ -135,10 +138,14 @@ document.addEventListener('click', function(e) {
   e.preventDefault();
   var id = toggle.dataset.id;
   var detail = document.getElementById('items-' + id);
+  var icon = document.getElementById('icon-' + id);
   if (!detail) return;
   var isHidden = detail.classList.contains('d-none');
   detail.classList.toggle('d-none', !isHidden);
-  toggle.textContent = isHidden ? 'свернуть' : 'и ещё ' + (detail.querySelectorAll('li').length - 1);
+  if (icon) {
+    icon.classList.toggle('bi-chevron-right', isHidden);
+    icon.classList.toggle('bi-chevron-down', !isHidden);
+  }
 });
 </script>
 {% endblock %}

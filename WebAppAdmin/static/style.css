@@ -31,17 +31,18 @@ body {
 .alert-danger { border-left-color: #dc3545; }
 .alert-warning { border-left-color: #ffc107; }
 
-.items-summary {
-  cursor: pointer;
-}
 .items-toggle {
-  color: #0d6efd;
+  color: #6c757d;
   text-decoration: none;
-  font-size: 0.85em;
-  white-space: nowrap;
+  display: inline-block;
+  line-height: 1;
 }
 .items-toggle:hover {
-  text-decoration: underline;
+  color: #0d6efd;
+}
+.items-icon {
+  font-size: 1.1em;
+  transition: transform 0.15s;
 }
 .items-detail {
   list-style: none;
