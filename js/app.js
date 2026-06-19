@@ -190,7 +190,6 @@ const App = {
               <p class="hero-subtitle">${t('subtitle')}</p>
             </div>
             <div class="hero-actions">
-              <button class="hero-visit-btn" onclick="document.getElementById('productsContainer').scrollIntoView({behavior:'smooth'})">📋 ${t('menu')}</button>
               <a class="hero-visit-btn" href="visit.html">📍 ${t('whereToFind')}</a>
               <button class="cart-toggle-header" onclick="UI.openCart()">
                 🛒 ${t('cart')} <span class="cart-badge" id="cartBadgeHeader">0</span>
