@@ -68,12 +68,12 @@ def create_ngrok_tunnel():
         "proto": "http"
     }).encode()
     try:
-        r = urllib.request.urlopen(
+        req = urllib.request.Request(
             "http://127.0.0.1:4040/api/tunnels",
             data=payload,
             headers={"Content-Type": "application/json"},
-            timeout=5,
         )
+        r = urllib.request.urlopen(req, timeout=5)
         data = json.loads(r.read())
         return data.get("public_url")
     except Exception:
