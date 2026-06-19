@@ -27,11 +27,11 @@ with app.app_context():
     db.create_all()
     # migrate: add address column if missing
     try:
-        from sqlalchemy import inspect
+        from sqlalchemy import inspect, text
         inspector = inspect(db.engine)
         cols = [c["name"] for c in inspector.get_columns("orders")]
         if "address" not in cols:
-            db.session.execute('ALTER TABLE orders ADD COLUMN address VARCHAR(500) DEFAULT ""')
+            db.session.execute(text('ALTER TABLE orders ADD COLUMN address VARCHAR(500) DEFAULT ""'))
             db.session.commit()
             logger.info("Added address column to orders table")
     except Exception as e:
