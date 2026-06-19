@@ -43,6 +43,7 @@
         <th>Имя</th>
         <th>Телефон</th>
         <th>Город</th>
+        <th>Адрес</th>
         <th>Состав заказа</th>
         <th>Сумма</th>
         <th>Доставка</th>
@@ -67,13 +68,16 @@
         <td>{{ order.customer_name or '—' }}</td>
         <td>{{ order.phone or '—' }}</td>
         <td>{{ order.city or '—' }}</td>
+        <td>{{ order.address or '—' }}</td>
         <td class="text-wrap" style="max-width: 220px;">
-          <span class="items-first">{{ items_list[0] if items_list else '—' }}</span>
+          <span class="items-first" id="firstItem-{{ order.id }}">{{ items_list[0] if items_list else '—' }}</span>
+          {% if items_list|length > 1 %}
           <ul class="items-detail d-none" id="items-{{ order.id }}">
-            {% for item in items_list[1:] %}
+            {% for item in items_list %}
               <li>{{ item }}</li>
             {% endfor %}
           </ul>
+          {% endif %}
         </td>
         <td>{{ order.total or '—' }}</td>
         <td>{{ order.delivery or '—' }}</td>
@@ -139,9 +143,11 @@ document.addEventListener('click', function(e) {
   var id = toggle.dataset.id;
   var detail = document.getElementById('items-' + id);
   var icon = document.getElementById('icon-' + id);
+  var firstItem = document.getElementById('firstItem-' + id);
   if (!detail) return;
   var isHidden = detail.classList.contains('d-none');
   detail.classList.toggle('d-none', !isHidden);
+  if (firstItem) firstItem.classList.toggle('d-none', !isHidden);
   if (icon) {
     icon.classList.toggle('bi-chevron-right', isHidden);
     icon.classList.toggle('bi-chevron-down', !isHidden);

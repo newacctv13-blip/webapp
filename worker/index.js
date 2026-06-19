@@ -24,7 +24,7 @@ function corsHeaders(origin) {
 }
 
 function formatOrderMessage(order) {
-  const { name, phone, items, subtotal, delivery, total, currency } = order;
+  const { name, phone, address, items, subtotal, delivery, total, currency } = order;
   const cur = currency || 'L';
 
   let lines = [];
@@ -33,6 +33,9 @@ function formatOrderMessage(order) {
   lines.push(`👤 <b>Имя:</b> ${escapeHtml(name)}`);
   lines.push(`📞 <b>Телефон:</b> ${escapeHtml(phone)}`);
   lines.push(`📍 <b>Город:</b> Chișinău`);
+  if (address) {
+    lines.push(`🏠 <b>Адрес:</b> ${escapeHtml(address)}`);
+  }
   lines.push('');
   lines.push('📦 <b>Состав заказа:</b>');
 

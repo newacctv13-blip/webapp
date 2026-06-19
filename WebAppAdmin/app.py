@@ -25,6 +25,17 @@ db.init_app(app)
 
 with app.app_context():
     db.create_all()
+    # migrate: add address column if missing
+    try:
+        from sqlalchemy import inspect
+        inspector = inspect(db.engine)
+        cols = [c["name"] for c in inspector.get_columns("orders")]
+        if "address" not in cols:
+            db.session.execute('ALTER TABLE orders ADD COLUMN address VARCHAR(500) DEFAULT ""')
+            db.session.commit()
+            logger.info("Added address column to orders table")
+    except Exception as e:
+        logger.warning(f"Could not add address column (may already exist): {e}")
 
 
 @app.route("/")
@@ -115,6 +126,7 @@ def ingest_order():
 
     name = data.get("name", "")
     phone = data.get("phone", "")
+    address = data.get("address", "")
     items = data.get("items", [])
     subtotal = data.get("subtotal", 0)
     delivery = data.get("delivery", 0)
@@ -139,9 +151,13 @@ def ingest_order():
         f"\U0001f464 <b>Имя:</b> {name}",
         f"\U0001f4de <b>Телефон:</b> {phone}",
         "\U0001f4cd <b>Город:</b> Chi\u0219in\u0103u",
+    ]
+    if address:
+        raw_lines.append(f"\U0001f3e0 <b>Адрес:</b> {address}")
+    raw_lines.extend([
         "",
         "\U0001f4e6 <b>Состав заказа:</b>",
-    ]
+    ])
     for i in items:
         line_total = int(i.get("price", 0)) * int(i.get("qty", 1))
         raw_lines.append(f"  \u2022 {i.get('name', '')} \u00d7 {i.get('qty', 1)} = {line_total} {currency}")
@@ -159,6 +175,7 @@ def ingest_order():
         order = Order(
             customer_name=name,
             phone=phone,
+            address=address,
             city="Chi\u0219in\u0103u",
             items=items_str,
             total=f"{subtotal} {currency}",

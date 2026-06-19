@@ -14,6 +14,7 @@ class Order(db.Model):
     phone = db.Column(db.String(100), default="")
     city = db.Column(db.String(255), default="")
     items = db.Column(db.Text, default="")
+    address = db.Column(db.String(500), default="")
     total = db.Column(db.String(100), default="")
     delivery = db.Column(db.String(100), default="")
     to_pay = db.Column(db.String(100), default="")
@@ -32,6 +33,7 @@ class Order(db.Model):
             "customer_name": self.customer_name,
             "phone": self.phone,
             "city": self.city,
+            "address": self.address,
             "items": self.items,
             "total": self.total,
             "delivery": self.delivery,
