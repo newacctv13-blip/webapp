@@ -90,6 +90,19 @@ def cancel_order(order_id):
     return redirect(request.referrer or url_for("index"))
 
 
+@app.route("/delete/<int:order_id>", methods=["POST"])
+def delete_order(order_id):
+    order = db.session.get(Order, order_id)
+    if not order:
+        flash("Заказ не найден", "danger")
+        return redirect(url_for("index"))
+
+    db.session.delete(order)
+    db.session.commit()
+    flash(f"Заказ #{order.id} удалён навсегда", "danger")
+    return redirect(request.referrer or url_for("index"))
+
+
 @app.route("/ingest", methods=["POST"])
 def ingest_order():
     data = request.get_json(silent=True) or {}

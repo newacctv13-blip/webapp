@@ -31,6 +31,32 @@ body {
 .alert-danger { border-left-color: #dc3545; }
 .alert-warning { border-left-color: #ffc107; }
 
+.items-summary {
+  cursor: pointer;
+}
+.items-toggle {
+  color: #0d6efd;
+  text-decoration: none;
+  font-size: 0.85em;
+  white-space: nowrap;
+}
+.items-toggle:hover {
+  text-decoration: underline;
+}
+.items-detail {
+  list-style: none;
+  padding: 0;
+  margin: 4px 0 0;
+}
+.items-detail li {
+  padding: 1px 0;
+  font-size: 0.9em;
+}
+.items-detail li::before {
+  content: "• ";
+  color: #6c757d;
+}
+
 @media (max-width: 768px) {
   .table {
     font-size: 0.8rem;

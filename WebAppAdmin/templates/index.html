@@ -58,7 +58,20 @@
         <td>{{ order.customer_name or '—' }}</td>
         <td>{{ order.phone or '—' }}</td>
         <td>{{ order.city or '—' }}</td>
-        <td class="text-wrap" style="max-width: 220px;">{{ order.items or '—' }}</td>
+        <td class="text-wrap" style="max-width: 220px;">
+          {% set items_list = (order.items or '').split(', ') %}
+          <span class="items-summary" data-target="items-{{ order.id }}">
+            <span class="items-first">{{ items_list[0] }}</span>
+            {% if items_list|length > 1 %}
+              <a href="#" class="items-toggle" data-id="{{ order.id }}">и ещё {{ items_list|length - 1 }}</a>
+            {% endif %}
+          </span>
+          <ul class="items-detail d-none" id="items-{{ order.id }}">
+            {% for item in items_list %}
+              <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+        </td>
         <td>{{ order.total or '—' }}</td>
         <td>{{ order.delivery or '—' }}</td>
         <td><strong>{{ order.to_pay or '—' }}</strong></td>
@@ -86,11 +99,19 @@
               </select>
             </form>
             <form method="POST" action="{{ url_for('cancel_order', order_id=order.id) }}" class="d-inline" onsubmit="return confirm('Отменить заказ #{{ order.id }}?')">
-              <button type="submit" class="btn btn-outline-danger btn-sm"><i class="bi bi-x-circle"></i></button>
+              <button type="submit" class="btn btn-outline-danger btn-sm" title="Отменить"><i class="bi bi-x-circle"></i></button>
+            </form>
+            <form method="POST" action="{{ url_for('delete_order', order_id=order.id) }}" class="d-inline" onsubmit="return confirm('Удалить заказ #{{ order.id }} навсегда?')">
+              <button type="submit" class="btn btn-outline-danger btn-sm" title="Удалить"><i class="bi bi-trash3"></i></button>
             </form>
           </div>
           {% else %}
-            <span class="text-muted small">—</span>
+            <div class="d-flex gap-1 flex-wrap">
+              <span class="text-muted small">—</span>
+              <form method="POST" action="{{ url_for('delete_order', order_id=order.id) }}" class="d-inline" onsubmit="return confirm('Удалить заказ #{{ order.id }} навсегда?')">
+                <button type="submit" class="btn btn-outline-danger btn-sm" title="Удалить"><i class="bi bi-trash3"></i></button>
+              </form>
+            </div>
           {% endif %}
         </td>
       </tr>
@@ -104,4 +125,20 @@
   <p>Заказов пока нет. Ожидаю сообщения от Telegram...</p>
 </div>
 {% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('click', function(e) {
+  var toggle = e.target.closest('.items-toggle');
+  if (!toggle) return;
+  e.preventDefault();
+  var id = toggle.dataset.id;
+  var detail = document.getElementById('items-' + id);
+  if (!detail) return;
+  var isHidden = detail.classList.contains('d-none');
+  detail.classList.toggle('d-none', !isHidden);
+  toggle.textContent = isHidden ? 'свернуть' : 'и ещё ' + (detail.querySelectorAll('li').length - 1);
+});
+</script>
 {% endblock %}
