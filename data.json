@@ -317,8 +317,8 @@
     {
       "id": 16,
       "category": "cakes",
-      "price": 28,
-      "image": "images/korzinochka.svg",
+      "price": 50,
+      "image": "images/korzinochka.jpg",
       "name": {
         "ru": "Корзиночка с фруктами",
         "ro": "Coșuleț cu fructe"
