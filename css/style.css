@@ -568,6 +568,9 @@ a:hover { text-decoration: underline; }
   padding: 10px 24px;
   border-radius: var(--radius-full);
   background: var(--accent);
+  border: none;
+  font-family: var(--font);
+  cursor: pointer;
   color: var(--text-white);
   font-size: 14px;
   font-weight: 600;
