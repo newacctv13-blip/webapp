@@ -29,7 +29,7 @@ def kill_processes_on_ports():
         try:
             r = subprocess.run(
                 ["netstat", "-ano"],
-                capture_output=True, text=True, timeout=5,
+                capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=5,
             )
             for line in r.stdout.splitlines():
                 if f":{port} " in line and "LISTENING" in line:
@@ -47,7 +47,7 @@ def log(msg):
     print(f"  [{time.strftime('%H:%M:%S')}] {msg}")
 
 def run_process(args, name, cwd=None):
-    proc = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, cwd=cwd)
+    proc = subprocess.Popen(args, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, cwd=cwd)
     processes.append(proc)
     return proc
 
@@ -139,7 +139,7 @@ def main():
     log("Установка зависимостей...")
     subprocess.run(
         [sys.executable, "-m", "pip", "install", "-r", "requirements.txt"],
-        cwd=ADMIN_DIR, capture_output=True, timeout=30,
+        cwd=ADMIN_DIR, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=60,
     )
 
     log("Запуск Admin Panel...")
@@ -152,7 +152,7 @@ def main():
     log("Сброс буфера заказов (если админка была недоступна)...")
     subprocess.run(
         [sys.executable, "flush_buffer.py"],
-        cwd=WORKER_DIR, capture_output=True, text=True, timeout=10,
+        cwd=WORKER_DIR, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=10,
     )
 
     log("Запуск relay-буфера заказов...")
