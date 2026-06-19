@@ -125,6 +125,10 @@ export const Cart = {
     const count = this.getCount();
     const cur = this.currency;
 
+    const savedName = document.getElementById('orderName')?.value || '';
+    const savedPhone = document.getElementById('orderPhone')?.value || '';
+    const savedAddress = document.getElementById('orderAddress')?.value || '';
+
     if (cartBadge) cartBadge.textContent = count;
     if (cartBadgeHeader) cartBadgeHeader.textContent = count;
 
@@ -167,11 +171,9 @@ export const Cart = {
           <span>${subtotal} ${cur}</span>
         </div>
         <div class="cart-summary-row delivery-toggle-row">
-          <span>${t.delivery || ''}</span>
           <label class="delivery-toggle">
             <input type="checkbox" id="deliveryToggle" ${this._deliveryEnabled ? 'checked' : ''} onchange="Cart.toggleDelivery()" />
-            <span class="toggle-slider"></span>
-            <span class="toggle-label">${deliveryLabel}</span>
+            <span class="toggle-label">${t.delivery || 'Доставка'}</span>
           </label>
         </div>
         <div class="cart-summary-row">
@@ -184,8 +186,11 @@ export const Cart = {
         </div>
       </div>
       <div class="cart-form">
-        <input type="text" id="orderName" placeholder="${t.namePlaceholder || ''}" onfocus="this.style.borderColor=''" />
-        <input type="tel" id="orderPhone" placeholder="${t.phonePlaceholder || ''}" onfocus="this.style.borderColor=''" />
+        <input type="text" id="orderName" placeholder="${t.namePlaceholder || ''}" value="${savedName}" onfocus="this.style.borderColor=''" />
+        <input type="tel" id="orderPhone" placeholder="${t.phonePlaceholder || ''}" value="${savedPhone}" onfocus="this.style.borderColor=''" />
+        <div class="cart-address" id="cartAddress" style="display: ${this._deliveryEnabled ? 'block' : 'none'}">
+          <input type="text" id="orderAddress" placeholder="${t.addressPlaceholder || 'Адрес доставки'}" value="${savedAddress}" />
+        </div>
       </div>
       <button class="btn-order" onclick="Cart.submitOrder()">✈️ ${t.order || ''}</button>`;
   },
@@ -196,6 +201,7 @@ export const Cart = {
     const products = DATA.products || [];
     const name = document.getElementById('orderName')?.value.trim() || '';
     const phone = document.getElementById('orderPhone')?.value.trim() || '';
+    const address = document.getElementById('orderAddress')?.value.trim() || '';
     const subtotal = this.getTotal();
     const delivery = this.deliveryFee;
     const total = subtotal + delivery;
@@ -217,10 +223,12 @@ export const Cart = {
       return product ? { name: product.name[lang], price: product.price, qty: item.qty } : null;
     }).filter(Boolean);
 
-    const orderData = { name, phone, items, subtotal, delivery, total, currency: cur };
+    const orderData = { name, phone, address, items, subtotal, delivery, total, currency: cur };
 
     let msg = `🍪 ${t.orderReady || ''}\n\n`;
-    msg += `👤 ${name}\n📞 ${phone}\n📍 Chișinău\n\n`;
+    msg += `👤 ${name}\n📞 ${phone}\n📍 Chișinău`;
+    if (address) msg += `\n🏠 ${address}`;
+    msg += `\n\n`;
 
     this.items.forEach(item => {
       const product = products.find(p => p.id === item.productId);

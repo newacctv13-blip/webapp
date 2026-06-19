@@ -36,6 +36,7 @@
       "gram": "гр",
       "namePlaceholder": "Ваше имя",
       "phonePlaceholder": "Ваш телефон",
+      "addressPlaceholder": "Адрес доставки",
       "orderReady": "Ваш заказ:",
       "whereToFind": "Где нас найти",
       "categories": {
@@ -71,6 +72,7 @@
       "gram": "g",
       "namePlaceholder": "Numele dvs.",
       "phonePlaceholder": "Telefonul dvs.",
+      "addressPlaceholder": "Adresa de livrare",
       "orderReady": "Comanda dvs.:",
       "whereToFind": "Unde ne găsiți",
       "categories": {
