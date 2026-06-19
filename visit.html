@@ -38,7 +38,7 @@
       </div>
     </header>
 
-    <a class="visit-back" href="index.html" id="visitBackTop" style="display:inline-flex;margin-bottom:24px">← <span id="backLabel">Наше меню</span></a>
+    <a class="hero-visit-btn" href="index.html" id="visitBackTop" style="display:inline-flex;margin-bottom:24px">📋 <span id="backLabel">Наше меню</span></a>
 
     <h1 class="visit-title" id="visitTitle">Где нас найти?</h1>
 
@@ -46,7 +46,7 @@
 
     <footer class="visit-footer">
       <div class="visit-contacts" id="visitContacts"></div>
-      <a class="visit-back" href="index.html" id="visitBack">← Наше меню</a>
+      <a class="hero-visit-btn" href="index.html" id="visitBack">📋 Наше меню</a>
     </footer>
   </div>
 
@@ -96,8 +96,8 @@
         document.getElementById('visitTitle').textContent =
           this.lang === 'ru' ? 'Где нас найти?' : 'Unde ne găsiți?';
 
-        document.getElementById('visitBack').textContent =
-          this.lang === 'ru' ? '← Наше меню' : '← Meniul nostru';
+        document.getElementById('visitBack').innerHTML =
+          this.lang === 'ru' ? '📋 Наше меню' : '📋 Meniul nostru';
         document.getElementById('backLabel').textContent =
           this.lang === 'ru' ? 'Наше меню' : 'Meniul nostru';
 
