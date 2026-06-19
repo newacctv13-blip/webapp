@@ -87,7 +87,7 @@ async function forwardToAdmin(env, order) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(order),
-      signal: AbortSignal.timeout(3000),
+      signal: AbortSignal.timeout(5000),
     });
     console.log('Order forwarded to admin webhook');
   } catch (err) {
@@ -96,7 +96,7 @@ async function forwardToAdmin(env, order) {
 }
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const origin = request.headers.get('Origin') || '';
     const headers = corsHeaders(origin);
 
@@ -146,7 +146,7 @@ export default {
     try {
       const message = formatOrderMessage(order);
       await sendTelegram(env, message);
-      forwardToAdmin(env, order);
+      ctx.waitUntil(forwardToAdmin(env, order));
 
       return new Response(JSON.stringify({ ok: true }), {
         status: 200,
