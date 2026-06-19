@@ -50,20 +50,53 @@ def cleanup_old_ngrok_tunnels():
     except Exception:
         pass
 
-def wait_for_ngrok(timeout=15):
+def wait_ngrok_api(timeout=15):
     for i in range(timeout):
         time.sleep(1)
         try:
-            req = urllib.request.Request("http://127.0.0.1:4040/api/tunnels")
-            r = urllib.request.urlopen(req, timeout=2)
-            data = json.loads(r.read())
-            tunnels = data.get("tunnels", [])
-            if tunnels:
-                url = tunnels[0]["public_url"]
-                return url
-        except (urllib.error.URLError, urllib.error.HTTPError, json.JSONDecodeError, OSError):
+            r = urllib.request.urlopen("http://127.0.0.1:4040/api/tunnels", timeout=2)
+            json.loads(r.read())
+            return True
+        except Exception:
             pass
+    return False
+
+def create_ngrok_tunnel():
+    payload = json.dumps({
+        "name": "admin",
+        "addr": "http://localhost:5002",
+        "proto": "http"
+    }).encode()
+    try:
+        r = urllib.request.urlopen(
+            "http://127.0.0.1:4040/api/tunnels",
+            data=payload,
+            headers={"Content-Type": "application/json"},
+            timeout=5,
+        )
+        data = json.loads(r.read())
+        return data.get("public_url")
+    except Exception:
+        return None
+
+def get_ngrok_url():
+    try:
+        r = urllib.request.urlopen("http://127.0.0.1:4040/api/tunnels", timeout=3)
+        data = json.loads(r.read())
+        tunnels = data.get("tunnels", [])
+        if tunnels:
+            return tunnels[0]["public_url"]
+    except Exception:
+        pass
     return None
+
+def ensure_ngrok_tunnel():
+    url = get_ngrok_url()
+    if url:
+        return url
+    log("туннель не найден, создаю через API...")
+    cleanup_old_ngrok_tunnels()
+    return create_ngrok_tunnel()
 
 def main():
     signal.signal(signal.SIGINT, cleanup)
@@ -93,28 +126,8 @@ def main():
 
     log("Сброс буфера заказов (если админка была недоступна)...")
     subprocess.run(
-        [sys.executable, "-c", f"""
-import json, os, urllib.request, urllib.error
-bf = {repr(BUFFER_FILE)}
-if os.path.exists(bf):
-    with open(bf, 'r+', encoding='utf-8') as f:
-        lines = f.readlines()
-        f.seek(0)
-        kept = []
-        for line in lines:
-            line = line.strip()
-            if not line: continue
-            try:
-                req = urllib.request.Request('http://127.0.0.1:5000/ingest', data=line.encode(), headers={{"Content-Type": "application/json"}})
-                urllib.request.urlopen(req, timeout=3)
-            except:
-                kept.append(line + '\\n')
-        f.seek(0)
-        f.truncate()
-        f.writelines(kept)
-        print(f'Buffered orders: {{len(lines) - len(kept)}} delivered, {{len(kept)}} remaining')
-"""],
-        capture_output=True, text=True, timeout=10,
+        [sys.executable, "flush_buffer.py"],
+        cwd=WORKER_DIR, capture_output=True, text=True, timeout=10,
     )
 
     log("Запуск relay-буфера заказов...")
@@ -124,15 +137,16 @@ if os.path.exists(bf):
     )
     time.sleep(2)
 
-    cleanup_old_ngrok_tunnels()
     log("Запуск ngrok -> relay (порт 5002)...")
-    ngrok_proc = run_process(
+    run_process(
         ["ngrok", "http", "5002", "--log=stdout"],
         "ngrok",
     )
-    time.sleep(3)
 
-    ngrok_url = wait_for_ngrok(timeout=10)
+    ngrok_url = None
+    if wait_ngrok_api(timeout=10):
+        ngrok_url = ensure_ngrok_tunnel()
+
     if ngrok_url:
         log(f"ngrok: {ngrok_url}")
         print(f"  -> ADMIN_WEBHOOK_URL: {ngrok_url}")

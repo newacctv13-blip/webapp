@@ -18,7 +18,9 @@ class RelayHandler(BaseHTTPRequestHandler):
         body = self.rfile.read(content_len)
         body_str = body.decode("utf-8")
 
-        if not forward_to_admin(body_str):
+        ok = forward_to_admin(body_str)
+        print(f"[order_relay] POST received, forward={'OK' if ok else 'FAIL'}, body={body_str[:60]}...")
+        if not ok:
             with open(BUFFER_FILE, "a", encoding="utf-8") as f:
                 f.write(body_str + "\n")
 
